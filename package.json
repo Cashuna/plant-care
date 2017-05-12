@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/lockwoni/plant-care/issues"
   },
-  "homepage": "https://github.com/lockwoni/plant-care#readme"
+  "homepage": "https://github.com/lockwoni/plant-care#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "method-override": "^2.3.8",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
+  }
 }
