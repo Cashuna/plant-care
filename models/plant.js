@@ -10,11 +10,11 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING
 		},
 		mature_height: {
-			type: DataTypes.INT
+			type: DataTypes.DECIMAL
 		},
 		mature_spread: {
-			type: DataTypes.INT
-		}
+			type: DataTypes.DECIMAL
+		},
 		water: {
 			type: DataTypes.STRING
 		},
@@ -25,10 +25,10 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING
 		},
 		soil_pH: {
-			type: DataTypes.INT
+			type: DataTypes.DECIMAL
 		},
 		sow_depth: {
-			type: DataTypes.INT
+			type: DataTypes.DECIMAL
 		},
 		temp_germ: {
 			type: DataTypes.STRING
@@ -40,13 +40,13 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.TEXT
 		},
 		days_to_germ: {
-			type: DataTypes.INT
+			type: DataTypes.DECIMAL
 		},
 		days_to_transplant: {
-			type: DataTypes.INT
+			type: DataTypes.DECIMAL
 		},
 		days_to_maturity: {
-			type: DataTypes.INT
+			type: DataTypes.DECIMAL
 		},
 		harvesting: {
 			type: DataTypes.TEXT
