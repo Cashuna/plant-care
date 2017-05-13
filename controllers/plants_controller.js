@@ -10,7 +10,7 @@ router.get("/api/plants", function(req, res) {
 
 	})
 	.then(function(dbPlant) {
-		res.json(dbPlant);
+		return res.render(dbPlant);
 	})
 	.catch(function(err) {
 		throw err;
