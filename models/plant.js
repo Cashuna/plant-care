@@ -1,5 +1,4 @@
-// Plant models
-
+// Creating and exporting the Plants model
 module.exports = function(sequelize, DataTypes) {
 	var Plant = sequelize.define("plant", {
 		plant_name: {

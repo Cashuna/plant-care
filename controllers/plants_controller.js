@@ -2,6 +2,7 @@
 // DEPENDENCIES
 var express = require("express");
 var db = require("../models");
+var path = require("path");
 
 
 /***************************************************/
@@ -26,5 +27,10 @@ module.exports = function(app) {
 			// If call not successful, throwing the error
 			throw err;
 		});
+	});
+
+	// GET route for displaying charts.html
+	app.get("/charts", function(req, res) {
+		res.sendFile(path.join(__dirname, "../public/charts.html"));
 	});
 };

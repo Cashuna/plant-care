@@ -6,5 +6,5 @@
 
 //MAIN PROCESSES
 $(document).ready(function() {
-
-};
+	
+});
