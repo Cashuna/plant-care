@@ -3,24 +3,28 @@
 var express = require("express");
 var db = require("../models");
 
-var path = require("path");
 
 /***************************************************/
 // ROUTES
 module.exports = function(app) {
-	// GET route 
+	// GET route for pulling all of the Plants data (from myfolia.com)
 	app.get("/api/plants", function(req, res) {
-		db.plant.findAll({})
-		.then(function(dbPlant) {
-			res.json(dbPlant);
-			res.sendFile(path.join(__dirname + "/../public/chart.html"));
+		// Pulling all of the Plant Care data for the specified plant
+		db.plant.findOne({
+			where: {
+				// Dummy data for testing - will pull from plant selected by user in form
+				plant_name: "Boston fern"
+			}
 		})
-		/*.catch(function(err) {
+		.then(function(dbPlant) {
+			// If call successful, logging that it was successful
+			console.log("Success: Plants data read");
+			// Returning a JSON of the Plants data
+			res.json(dbPlant);
+		})
+		.catch(function(err) {
+			// If call not successful, throwing the error
 			throw err;
-		});*/
+		});
 	});
-	// Creating test data
-	/*router.post("/", function(req, res) {
-		db.Plants.create({})
-	})*/
 };
