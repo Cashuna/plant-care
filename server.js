@@ -27,6 +27,7 @@ app.use(methodOverride("_method"));
 // ROUTES
 // Importing routes and giving the server access to them
 require("./controllers/plants_controller.js")(app);
+//require("./controllers/user_controller.js")(app);
 
 // Syncing the sequelize models and then starting the express app
 db.sequelize.sync().then( function() {
