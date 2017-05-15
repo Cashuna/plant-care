@@ -72,10 +72,13 @@ $(document).ready(function() {
 	});*/
 
 // Chart.js test
-    var ctx = $("#myChart");
+    var ctx = $("#heightChart");
 
+    // NOTE: Dummy data for testing - will pull from user-inputted plant data stored in db
     var labelArr = ["May", "June", "July"];
-    var countArr = [23, 15, 10];
+    var countArr1 = [12, 18, 24];
+    var countArr2 = [28, 28, 28];
+    var trimmedArr = [ , 25, ];
 
     $.get("/api/plants", function(data) {
     	console.log(data);
@@ -86,31 +89,73 @@ $(document).ready(function() {
       };*/
       
       console.log(labelArr);
-      console.log(countArr);
+      console.log(countArr1);
 
-      var myChart = new Chart(ctx, {
-      type: 'line',
+      var heightChart = new Chart(ctx, {
+      type: "line",
       data: {
         labels: labelArr,
         datasets: [{
-          label: 'Spread Trend',
-          data: countArr,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.9)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)'
-          ],
-          borderWidth: 1
+          	label: "Plant 1",
+          	data: countArr1,
+ 			fill: true,
+ 			backgroundColor: "rgba(75, 192, 192, 0.2)",
+ 			borderWidth: 2,
+ 			borderColor: "rgba(75, 192, 192, 1)",
+ 			pointRadius: 4,
+ 			pointBackgroundColor: "rgba(75, 192, 192, 1)",
+ 			pointHoverRadius: 6,
+ 			pointHoverBorderColor: "rgba(102, 0, 255, 1)",
+ 			pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
+        }, {
+          	label: "Mature Height",
+          	data: countArr2,
+ 			fill: false,
+ 			borderWidth: 2,
+ 			borderColor: "rgba(153, 102, 255, 1)",
+ 			pointRadius: 0
+        }, {
+          	label: "Plant trimmed!",
+          	data: trimmedArr,
+ 			fill: true,
+ 			backgroundColor: "rgba(255, 99, 132, 0.2)",
+ 			borderWidth: 2,
+ 			borderColor: "rgba(255, 99, 132, 1)",
+ 			pointStyle: "crossRot",
+ 			pointRadius: 4,
+ 			pointBackgroundColor: "rgba(255, 99, 132, 1)",
+ 			pointHoverRadius: 6,
+ 			pointHoverBorderColor: "rgba(102, 0, 255, 1)",
+ 			pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
         }]
       },
       options: {
+      	title: {
+      		display: true,
+      		text: "Plant Height Over Time"
+      	},
+      	legend: {
+      		position: "bottom"
+      	},
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero:true
-            }
-          }]
+	        yAxes: [{
+	            ticks: {
+	            	beginAtZero: true
+	            },
+		        gridLines: {
+		      		display: false,
+		      		zeroLineColor: "rgba(0, 0, 0, 0.25)"
+		      	}
+	        }],
+	        xAxes: [{
+	            ticks: {
+	            	beginAtZero: true
+	            },
+		        gridLines: {
+		      		display: false,
+		      		zeroLineColor: "rgba(0, 0, 0, 0.25)"
+		      	}
+	        }]
         }
       }
     });
