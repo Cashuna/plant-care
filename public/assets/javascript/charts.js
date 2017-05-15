@@ -113,7 +113,8 @@ $(document).ready(function() {
  			fill: false,
  			borderWidth: 2,
  			borderColor: "rgba(153, 102, 255, 1)",
- 			pointRadius: 0
+ 			pointRadius: 0,
+ 			pointHoverRadius: 0
         }, {
           	label: "Plant trimmed!",
           	data: trimmedArr,
@@ -124,9 +125,7 @@ $(document).ready(function() {
  			pointStyle: "crossRot",
  			pointRadius: 4,
  			pointBackgroundColor: "rgba(255, 99, 132, 1)",
- 			pointHoverRadius: 6,
- 			pointHoverBorderColor: "rgba(102, 0, 255, 1)",
- 			pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
+ 			pointHoverRadius: 6
         }]
       },
       options: {
@@ -162,7 +161,7 @@ $(document).ready(function() {
   });
 
 	// Calling the loadLiquidFillGuage function to display the water data
-	var gaugeWater = loadLiquidFillGauge("fillgaugeWater", 55 , configWater);
+	var gaugeWater = loadLiquidFillGauge("fillgaugeWater", 65 , configWater);
 
 	// Calling the loadLiquidFillGuage function to display the sunlight data
 	var gaugeSun = loadLiquidFillGauge("fillgaugeSun", 55 , configSun);
