@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+    var signIn = sequelize.define("signIn", {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -15,5 +15,5 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    return User; //why is this return necessary?
+    return signIn; //why is this return necessary?
 };
