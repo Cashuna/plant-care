@@ -11,7 +11,8 @@ module.exports = function(sequelize, DataTypes) {
         password: {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+
     });
 
     return User; //why is this return necessary?
