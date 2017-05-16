@@ -13,10 +13,6 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			defaultValue: "N/A"
 		},
-		origin: {
-			type: DataTypes.STRING,
-			defaultValue: "N/A"
-		},
 		lifecycle: {
 			type: DataTypes.STRING,
 			defaultValue: "N/A"
@@ -26,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: "N/A"
 		},
 		frost_hardiness: {
+			type: DataTypes.STRING,
+			defaultValue: "N/A"
+		},
+		origin: {
 			type: DataTypes.STRING,
 			defaultValue: "N/A"
 		},

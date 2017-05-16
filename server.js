@@ -2,6 +2,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+var path = require("path");
+
 
 /*******************************************/
 // SETTING UP THE EXPRESS APP
@@ -22,6 +24,7 @@ app.use(express.static(process.cwd() + "/public"));
 
 // Overriding with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
+
 
 /*******************************************/
 // ROUTES

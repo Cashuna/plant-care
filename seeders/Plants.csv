@@ -1,4 +1,3 @@
-id,plant_name,plant_name_sci,plant_type,lifecycle,plant_shape,frost_hardiness,origin,mature_ht_val,mature_ht_unit,mature_sprd_val,mature_sprd_unit,soil_acidity_min,soil_acidity_max,water_req,soil_type,sun_req,sow_direct,sowing_depth_val,sowing_depth_unit,tempF_grow_min,tempF_grow_max
 1,Basil,Ocimum basilicum,Herb,Annual/Perennial,Forb,Tender,India,1.5,feet,11.7,inches,5.1,8.5,Medium,Loam / Sand / Silt,Full Sun,Yes,0.1,inches,59,90
 2,Aloe vera,Aloe barbadensis,Houseplant,Perennial,Spreading,Hardy,Morocco,2.0,feet,2.9,feet,5.6,7.5,Low,Potting Mix,Full Shade / Indoor,No,3.0,inches,50,90
 3,Lucky Bamboo,Dracaena sanderiana,Houseplant,Perennial,Erect,Tender,Cameroon,5.0,inches,9.8,inches,6.4,7.5,Very High,Sand / Loam / Potting Mix,Indoor / Dappled Sun,No,1.0,inches,59,77
