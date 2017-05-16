@@ -16,8 +16,8 @@ var temp;
 var sowBoolean;
 var sowInfo;
 
-/// NOTE: Seeders column order currently doesn't match sequelize table column header order
 
+/***************************************************/
 //FUNCTIONS
 var getPlantOverview = function() {
 	console.log("Test");
@@ -56,14 +56,14 @@ var addPlantLifecycle = function(data) {
 };
 
 var addPlantSize = function(data) {
-    matureHt = data.mature_ht_val + " " + data.mature_ht_unit;
-    matureSprd = data.mature_sprd_val + " " + data.mature_sprd_unit;
+    matureHt = data.mature_ht_val.toFixed(1) + " " + data.mature_ht_unit;
+    matureSprd = data.mature_sprd_val.toFixed(1) + " " + data.mature_sprd_unit;
 
     $("#plant-size").append("<p>Mature height: " + matureHt + "</p><p>Mature spread: " + matureSprd + "</p>");
 };
 
 var addPlantCare = function(data) {
-    soil = data.soil_type + " (" + data.acidity_min + "pH to " + data.acidity_max + "pH)";
+    soil = data.soil_type + " (" + data.soil_acidity_min.toFixed(1) + "pH to " + data.soil_acidity_max.toFixed(1) + "pH)";
     water = data.water_req;
     sun = data.sun_req;
 
@@ -78,7 +78,7 @@ var addPlantTemp = function(data) {
 
 var addPlantSow = function(data) {
     sowBoolean = data.sow_direct;
-    sowInfo = data.sowing_depth_val + " " + data.sowing_depth_unit;
+    sowInfo = data.sowing_depth_val.toFixed(1) + " " + data.sowing_depth_unit;
 
     if (sowBoolean === "Yes") {
     	$("#plant-sow").append("<p>Okay to sow directly? " + sowBoolean + "</p><p>Sow depth: " + sowInfo + "</p>");
@@ -88,6 +88,7 @@ var addPlantSow = function(data) {
 };
 
 
+/***************************************************/
 //MAIN PROCESSES
 $(document).ready(function() {
 	getPlantOverview();

@@ -14,7 +14,7 @@ module.exports = function(app) {
 		db.plant.findOne({
 			where: {
 				// Dummy data for testing - will pull from plant selected by user in form
-				plant_name: "Boston fern"
+				plant_name: "Dill"
 			}
 		})
 		.then(function(dbPlant) {
