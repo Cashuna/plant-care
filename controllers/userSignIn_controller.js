@@ -11,19 +11,17 @@ var bcrypt = require('bcrypt');
 var express = require('express');
 var userRoutes = express.Router();
 
-//var salt = '';
+var salt = $2a$10$BMaZfkUboe3WS0TGkvmpOu;
 
 userRoutes.get("/test", function(req, res) {
     res.status(200).json({ 'message': 'Success'})
 });
 
-
-
 // POST route for creating a new user
 userRoutes.post("/user", function(req, res) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
         // Store hash in your password DB.
-        db.User.create({
+        db.signIn.create({
             username: req.body.username,
             password: hash
         }).then(function(dbPost) {
@@ -34,7 +32,7 @@ userRoutes.post("/user", function(req, res) {
 });
 
 userRoutes.post("/user/signin", function(req, res) {
-    db.User.findOne({
+    db.signIn.findOne({
         username: req.body.username
     })
         .then(function(user) {
