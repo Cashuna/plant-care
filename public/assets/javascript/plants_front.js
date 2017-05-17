@@ -1,6 +1,7 @@
 //SETUP VARIABLES
 var plantInfo = $("#plant-intro");
 
+// Setting global variables for data pulled from Plants
 var plantName;
 var plantNameSci;
 var plantType;
@@ -16,9 +17,20 @@ var temp;
 var sowBoolean;
 var sowInfo;
 
+// Setting global variables for data pulled from userProfiles
+var uPlantName;
+var uPlantHeight;
+var uPlantWatered;
+var uPlantSpread;
+var uSoil;
+var uPlantSun;
+var uPlantTemp;
+var uPlantTrim;
+
 
 /***************************************************/
-//FUNCTIONS
+// FUNCTIONS
+// Pulling data from the Plants table
 var getPlantOverview = function() {
 	console.log("Test");
 	$.get("/api/plants", function(data) {

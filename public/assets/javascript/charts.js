@@ -19,6 +19,7 @@ configSun.waveColor = "#FFD633";
 configSun.circleThickness = 0.1;
 configSun.circleFillGap = 0.2;
 configSun.textVertPosition = 0.8;
+//configSun.displayPercent = false;
 configSun.waveAnimateTime = 2000;
 configSun.waveHeight = 0.2;
 configSun.waveCount = 1;
@@ -70,7 +71,7 @@ $(document).ready(function() {
                 .text(function(d) { return d; 
         });*/
 
-        var canvas = document.querySelector("canvas"),
+        /*var canvas = document.querySelector("canvas"),
     context = canvas.getContext("2d"),
     width = canvas.width,
     height = canvas.height,
@@ -158,7 +159,7 @@ function randomWalk(x0, y0, n) {
             })
             .attr('r', function(d) {
                 return d.r;
-            });
+            });*/
     });
 
     // Chart.js test
