@@ -6,7 +6,6 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [3,20]
             }
-            //unique: true
         },
 
         plantHeight: {
