@@ -34,8 +34,13 @@ module.exports = function(app) {
 		res.sendFile(path.join(__dirname, "../public/charts.html"));
 	});
 
-	  // If no matching route is found default to home
-	  app.use(function(req, res) {
-	    res.sendFile(path.join(__dirname, "../public/test.html"));
+	  // GET route for displaying charts.html
+	  app.get("/", function(req, res) {
+	  	res.sendFile(path.join(__dirname, "../public/test.html"));
 	  });
+
+	  // If no matching route is found default to home
+	 /* app.use(function(req, res) {
+	    res.sendFile(path.join(__dirname, "../public/test.html"));
+	  });*/
 };
