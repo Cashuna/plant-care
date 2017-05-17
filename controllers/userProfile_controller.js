@@ -7,7 +7,7 @@ var path = require("path");
 /***************************************************/
 // ROUTES
 module.exports = function(app) {
-	// GET route for pulling all of the Plants data (from myfolia.com)
+	// GET route for pulling all of the user's plant data
 	app.get("/api/:user/plants", function(req, res) {
 		// Pulling the user's plant data for the specified plant
 		db.userProfile.findAll({})
@@ -23,4 +23,6 @@ module.exports = function(app) {
 			throw err;
 		});
 	});
+
+	app.post("/api/:user/plants")
 };

@@ -34,10 +34,10 @@ module.exports = function(app) {
 		res.sendFile(path.join(__dirname, "../public/charts.html"));
 	});
 
-	  // GET route for displaying charts.html
-	  app.get("/", function(req, res) {
+	// GET route for displaying charts.html
+	app.get("/", function(req, res) {
 	  	res.sendFile(path.join(__dirname, "../public/test.html"));
-	  });
+	});
 
 	  // If no matching route is found default to home
 	 /* app.use(function(req, res) {
