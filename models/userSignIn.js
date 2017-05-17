@@ -24,5 +24,5 @@ module.exports = function(sequelize, DataTypes) {
         }
     );
 
-    return signIn; //why is this return necessary?
+    return signIn;
 };
