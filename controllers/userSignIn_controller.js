@@ -6,12 +6,9 @@
 // =============================================================
 
 // Requiring our models
-var db = require("../models");
-var bcrypt = require('bcrypt');
-var express = require('express');
-var userRoutes = express.Router();
-
-var salt = $2a$10$BMaZfkUboe3WS0TGkvmpOu;
+var db = require("../models"), bcrypt = require('bcrypt');
+var express = require('express'), userRoutes = express.Router();
+var salt = "$2a$10$BMaZfkUboe3WS0TGkvmpOu";
 
 userRoutes.get("/test", function(req, res) {
     res.status(200).json({ 'message': 'Success'})
