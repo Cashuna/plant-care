@@ -1,7 +1,7 @@
 SEO to-do
 
 - [ ] Create an XML Sitemap
-- [ ] Determine keywords to use - plant garden gardening houseplant DIY
+- [ X] Determine keywords to use - plant garden gardening houseplant DIY
 - [ ] Setup title tags - in the head of each page <title> Easy Indoor Houseplant Gardening Tool </title>
 
 	-Keywords should appear:
@@ -16,7 +16,7 @@ SEO to-do
 
 
 - [ ] Use headers correctly (EX: only 1 H1 per page)
-- [ ] Add page description - meta property - <meta property="og:description" content=“Indoor plant care easy DIY garden gardening houseplant”/>
+- [ X] Add page description - meta property - <meta property="og:description" content=“Indoor plant care easy DIY garden gardening houseplant”/>
 - [ ] Determine image alt tags
 - [ ] Determine URL structure - short and sweet
 - [ ] Determine link building strategy (guest blogging, influencer marketing, etc). Pay close attention to which sites have “nofollow” links and avoid those as google will stop crawling once it hits those links. These links provide no juice. Ideally, you want links from sites with a high authority and high volume. (Linking back to our page)
