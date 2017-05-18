@@ -11,8 +11,8 @@ configWater.waveCount = 1;
 // Liquid fill guage to show % of days that plant was in correct sun
 var configSun = liquidFillGaugeDefaultSettings();
 configSun.circleColor = "#FFCC00";
-configSun.textColor = "#FFFFFF";
-configSun.waveTextColor = "#FFD633";
+configSun.textColor = "rgba(255, 255, 255, 0)";
+configSun.waveTextColor = "rgba(255, 255, 255, 0)";
 configSun.waveColor = "#FFD633";
 configSun.circleThickness = 0.1;
 configSun.circleFillGap = 0.2;
@@ -50,6 +50,10 @@ var sprdArr = [];
 var htArr = [];
 var phArr = [];
 var tempArr = [];
+
+var sunTxt = ["Full Sun", "Full Sun / Partial Sun", "Partial Sun", "Partial Sun / Dappled Sun", "Dappled Sun / Partial Sun", "Indoor / Dappled Sun", "Partial Sun / Indoor", "Indoor", "Full Shade / Indoor"];
+var sunVal = [100, 85, 65, 50, 50, 25, 25, 0];
+var sunRec;
 
 
 // FUNCTIONS
@@ -106,6 +110,11 @@ var userPlantData = function(data) {
         tempArr.push(temp);
     }
 };
+
+var sunRec = function(sun) {
+    sunRec = sunVal[sunTxt.indexOf(sun)];
+    console.log("Sun rec: " + sunRec);
+}
 
 // Creating a reusable instance of the chart.js prototype that includes the trimmed data (**is that right vocab?)
 // *** Move to new file and export??
@@ -259,10 +268,6 @@ $(document).ready(function() {
     $("#guageH1").text("Recommended Water");
     var gaugeWater = loadLiquidFillGauge("fillgaugeWater", 65, configWater);
 
-    // Calling the loadLiquidFillGuage function to display the sunlight data
-    $("#guageH2").text("Recommended Sun");
-    var gaugeSun = loadLiquidFillGauge("fillgaugeSun", 55, configSun);
-
     // Getting the user's plant data & data on the identified plant from the Plants table
     $.get("/api/user/plant", function(data) {
         // Calling the functions to pull the specified plant's spread, height, & trim data 
@@ -290,6 +295,12 @@ $(document).ready(function() {
             benchmarkFn(recTmin, data.tempF_grow_min);
             benchmarkFn(recTmax, data.tempF_grow_max);
             lineChartNoTrim(ctxT, tempChart, tempArr, data.plant_name, recTmin, recTmax, titleT);
+
+            // Calling the function to pull the recommended sun amount
+            sunRec(data.sun_req);
+            // Calling the loadLiquidFillGuage function to display the sunlight data
+            $("#guageH2").text("Recommended Sun");
+            var gaugeSun = loadLiquidFillGauge("fillgaugeSun", sunRec, configSun);
         });
     });
 });
