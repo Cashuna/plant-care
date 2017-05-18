@@ -1,6 +1,4 @@
 //SETUP VARIABLES
-var matureSpread;
-
 // Liquid fill guage to show % of days that plant was watered
 var configWater = liquidFillGaugeDefaultSettings();
 configWater.circleThickness = 0.1;
@@ -13,15 +11,15 @@ configWater.waveCount = 1;
 // Liquid fill guage to show % of days that plant was in correct sun
 var configSun = liquidFillGaugeDefaultSettings();
 configSun.circleColor = "#FFCC00";
-configSun.textColor = "#997A00";
-configSun.waveTextColor = "#FFEB99";
+configSun.textColor = "#FFFFFF";
+configSun.waveTextColor = "#FFD633";
 configSun.waveColor = "#FFD633";
 configSun.circleThickness = 0.1;
 configSun.circleFillGap = 0.2;
 configSun.textVertPosition = 0.8;
 //configSun.displayPercent = false;
-configSun.waveAnimateTime = 2000;
-configSun.waveHeight = 0.2;
+//configSun.waveAnimateTime = 2000;
+configSun.waveHeight = 0.02;
 configSun.waveCount = 1;
 
 // Chart.js canvas
@@ -36,10 +34,9 @@ var titleH = "Height";
 var titlePH = "pH";
 var titleT = "Temperature";
 
-// NOTE: Dummy data for testing - will pull from user-inputted plant data stored in db
-var labelArr = ["May", "June", "July", "Aug.", "Sep."];
-
 // Declaring variables for use later to store data for user's plant
+var timeArr = [];
+
 var trimmedArr = [];
 
 var benchmarkSprd = [];
@@ -56,6 +53,16 @@ var tempArr = [];
 
 
 // FUNCTIONS
+// *** Do we prevent form from being available on same day as 1st entered data, or does second entry update 1st???
+// Function to convert sequelize timestamp to day
+var formatDate = function(data) {
+    for (var i = 0; i < data.length; i++) {
+        var addTime = data[i].createdAt;
+        timeArr.push(moment(addTime).format("MM/DD/YY"));
+    };
+    console.log(timeArr);
+};
+
 // Generic function for plotting benchmark
 var benchmarkFn = function(benchmark, average) {
     if (typeof average === "number") {
@@ -107,7 +114,7 @@ var lineChartTrim = function(ctx, chartTag, userPlantArr, plant, benchmark, titl
     var chartTag = new Chart(ctx, {
         type: "line",
         data: {
-            labels: labelArr,
+            labels: timeArr,
             datasets: [{
                 label: "Your " + plant,
                 data: userPlantArr,
@@ -118,8 +125,8 @@ var lineChartTrim = function(ctx, chartTag, userPlantArr, plant, benchmark, titl
                 //pointRadius: 4,
                 pointBackgroundColor: "rgba(75, 192, 192, 1)",
                 //pointHoverRadius: 6,
-                pointHoverBorderColor: "rgba(102, 0, 255, 1)",
-                pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
+                //pointHoverBorderColor: "rgba(102, 0, 255, 1)",
+                //pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
             }, {
                 label: "Mature " + title,
                 data: benchmark,
@@ -180,7 +187,7 @@ var lineChartNoTrim = function(ctx, chartTag, userPlantArr, plant, recMin, recMa
     var chartTag = new Chart(ctx, {
         type: "line",
         data: {
-            labels: labelArr,
+            labels: timeArr,
             datasets: [{
                 label: "Your " + plant,
                 data: userPlantArr,
@@ -190,8 +197,8 @@ var lineChartNoTrim = function(ctx, chartTag, userPlantArr, plant, recMin, recMa
                 //pointRadius: 4,
                 pointBackgroundColor: "rgba(75, 192, 192, 1)",
                 //pointHoverRadius: 6,
-                pointHoverBorderColor: "rgba(102, 0, 255, 1)",
-                pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
+                //pointHoverBorderColor: "rgba(102, 0, 255, 1)",
+                //pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
             }, {
                 label: "Min. temp.",
                 data: recMin,
@@ -249,9 +256,11 @@ var lineChartNoTrim = function(ctx, chartTag, userPlantArr, plant, recMin, recMa
 // MAIN PROCESSES
 $(document).ready(function() {
     // Calling the loadLiquidFillGuage function to display the water data
+    $("#guageH1").text("Recommended Water");
     var gaugeWater = loadLiquidFillGauge("fillgaugeWater", 65, configWater);
 
     // Calling the loadLiquidFillGuage function to display the sunlight data
+    $("#guageH2").text("Recommended Sun");
     var gaugeSun = loadLiquidFillGauge("fillgaugeSun", 55, configSun);
 
     // Getting the user's plant data & data on the identified plant from the Plants table
@@ -259,6 +268,8 @@ $(document).ready(function() {
         // Calling the functions to pull the specified plant's spread, height, & trim data 
         userPlantData(data);
         userPlantTrim(data);
+
+        formatDate(data);
 
         $.get("/api/plants", function(data) {
             console.log(data);
