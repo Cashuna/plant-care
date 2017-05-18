@@ -36,7 +36,12 @@ module.exports = function(app) {
 
 	// GET route for displaying charts.html
 	app.get("/", function(req, res) {
-	  	res.sendFile(path.join(__dirname, "../public/test.html"));
+	  	res.sendFile(path.join(__dirname, "../public/index.html"));
+	});
+
+	// GET route for displaying charts.html
+	app.get("/", function(req, res) {
+	  	res.sendFile(path.join(__dirname, "../public/plantform.html"));
 	});
 
 	  // If no matching route is found default to home

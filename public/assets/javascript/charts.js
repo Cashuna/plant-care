@@ -11,8 +11,8 @@ configWater.waveCount = 1;
 // Liquid fill guage to show % of days that plant was in correct sun
 var configSun = liquidFillGaugeDefaultSettings();
 configSun.circleColor = "#FFCC00";
-configSun.textColor = "#FFFFFF";
-configSun.waveTextColor = "#FFD633";
+configSun.textColor = "rgba(255, 255, 255, 0)";
+configSun.waveTextColor = "rgba(255, 255, 255, 0)";
 configSun.waveColor = "#FFD633";
 configSun.circleThickness = 0.1;
 configSun.circleFillGap = 0.2;
@@ -52,7 +52,7 @@ var phArr = [];
 var tempArr = [];
 
 var sunTxt = ["Full Sun", "Full Sun / Partial Sun", "Partial Sun", "Partial Sun / Dappled Sun", "Dappled Sun / Partial Sun", "Indoor / Dappled Sun", "Partial Sun / Indoor", "Indoor", "Full Shade / Indoor"];
-var sunVal = [99, 85, 65, 50, 50, 25, 25, 0];
+var sunVal = [100, 85, 65, 50, 50, 25, 25, 0];
 var sunRec;
 
 
