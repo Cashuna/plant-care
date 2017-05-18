@@ -1,0 +1,15 @@
+SEO to-do
+
+- [ ] Create an XML Sitemap
+- [ ] Determine keywords to use
+- [ ] Setup title tags
+- [ ] Use headers correctly (EX: only 1 H1 per page)
+- [ ] Add page description - meta property - <meta property="og:description" content=“Indoor plant care”/>
+- [ ] Determine image alt tags
+- [ ] Determine URL structure - short and sweet
+- [ ] Determine link building strategy (guest blogging, influencer marketing, etc). Pay close attention to which sites have “nofollow” links and avoid those as google will stop crawling once it hits those links. These links provide no juice. Ideally, you want links from sites with a high authority and high volume. (Linking back to our page)
+- [ ] Verify site with Google - https://www.google.com/webmasters/tools/home?hl=en&pli=1
+- [ ] Optimize page speed & run test - https://developers.google.com/speed/pagespeed/insights/
+- [ ] Optimize mobile responsiveness & run test - https://search.google.com/search-console/mobile-friendly
+- [ ] Setup structured data (this controls how info is displayed on the SEPR “Search Engine Results Page” https://www.google.com/webmasters/markup-helper/
+- [ ] Track how the site is ranking vs competition (www.semrush.com) - free for 5 queries a day
