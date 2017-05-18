@@ -3,6 +3,18 @@ SEO to-do
 - [ ] Create an XML Sitemap
 - [ ] Determine keywords to use - plant garden gardening houseplant DIY
 - [ ] Setup title tags - in the head of each page <title> One Green Thumb </title>
+
+	-Keywords should appear:
+		Once in the title tag;
+		Once in an H1 near the top of the page;
+		Once in the URL;
+		Once in the meta description;
+		At least once in an image alt attribute; and
+		2-3 times in page content, with variations (pluralizations, long-tail phrases, etc.).
+		Distribute keywords evenly throughout your text.
+
+
+
 - [ ] Use headers correctly (EX: only 1 H1 per page)
 - [ ] Add page description - meta property - <meta property="og:description" content=“Indoor plant care easy DIY garden gardening houseplant”/>
 - [ ] Determine image alt tags
