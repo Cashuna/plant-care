@@ -13,6 +13,8 @@ var PORT = process.env.PORT || 3000;
 // Requiring the models for syncing
 var db = require("./models");
 
+var jwt = require("jsonwebtoken");
+
 // Setting up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,11 +33,36 @@ app.use(methodOverride("_method"));
 // Importing routes and giving the server access to them
 require("./controllers/plants_controller.js")(app);
 require("./controllers/userProfile_controller.js")(app);
-require("./controllers/userSignIn_controller.js")(app);
+//require("./controllers/userSignIn_controller.js")(app);
+
+var login = require("./controllers/userSignIn_controller.js");
+
+app.use('/login', login);
+app.use('/login/secure', function (req, res, next) {
+    // check authorization
+    // if authorized next()
+    if (!req.header('Authorization')) {
+        res.status(401).json({ 'status': 'Not Authorized'});
+    } else {
+        jwt.verify(req.header('Authorization'), 'randomsecretforsigningjwt', function(err, decoded) {
+            if (err) {
+                console.log('err', err);
+                res.status(401).json({ 'status': 'Not Authorized'});
+            } else {
+                console.log(decoded.data);// bar
+                // query db for privileges for user
+                // add to req.privs
+                next();
+            }
+        });
+    }
+    // else res.status(401).json({})
+});
+app.use('/api/secure', login);
 
 // Syncing the sequelize models and then starting the express app
 db.sequelize.sync().then( function() {
-	app.listen(PORT, function() {
-	  console.log("Listening on PORT " + PORT);
-	});
+    app.listen(PORT, function() {
+      console.log("Listening on PORT " + PORT);
+    });
 });
