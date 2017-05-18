@@ -7,10 +7,16 @@ var path = require("path");
 /***************************************************/
 // ROUTES
 module.exports = function(app) {
-	// GET route for pulling all of the user's plant data
+	// GET route for pulling the user's plant data
 	app.get("/api/user/plant", function(req, res) {
 		// Pulling the user's plant data for the specified plant
-		db.userProfile.findAll({})
+		db.userProfile.findAll({
+			where: {
+				// Dummy data for testing - will pull from user sign-in & plant selected by user in form
+				plantName: "Dill",
+				signInId: 1
+			}
+		})
 		.then(function(dbUserProf) {
 			// If call successful, logging that it was successful
 			console.log("Success: User's plants data read");

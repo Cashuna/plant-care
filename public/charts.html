@@ -43,40 +43,46 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div id="waterGuage">
-					<h2 class="text-center">Recommended water</h2>
+					<h2 class="text-center" id="guageH1"></h2>
 					<svg id="fillgaugeWater" width="97%" height="250"></svg>
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<div id="sunGuage">
-					<h2 class="text-center">Recommended sun</h2>
+					<h2 class="text-center" id="guageH2"></h2>
 					<svg id="fillgaugeSun" width="97%" height="250"></svg>
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-4">
-				<canvas width="960" height="500"></canvas>
-			</div>
-
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<canvas id="heightChart" width="100" height="100"></canvas>
 			</div>
 
-			<div class="col-md-4">
-				<canvas id="heightChart" width="100" height="100"></canvas>
+			<div class="col-md-3">
+				<canvas id="spreadChart" width="100" height="100"></canvas>
+			</div>
+
+			<div class="col-md-3">
+				<canvas id="phChart" width="100" height="100"></canvas>
+			</div>
+			<div class="col-md-3">
+				<canvas id="tempChart" width="100" height="100"></canvas>
 			</div>
 		</div>
 	</div>
+<!--Importing moment.js-->
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 <!--Importing JQuery-->
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<
 <!--Importing D3-->
 <script src="https://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
 <!--Importing Liquid Fill Guage-->
 <script src="./assets/javascript/liquidFillGauge.js" language="JavaScript"></script>
-<!--Importing charts.js script-->
+<!--Importing charts.js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
 <!--Importing front-end js files-->
 <script type="text/javascript" src="./assets/javascript/charts.js"></script>
