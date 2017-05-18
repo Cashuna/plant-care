@@ -2,7 +2,7 @@ SEO to-do
 
 - [ ] Create an XML Sitemap
 - [ ] Determine keywords to use - plant garden gardening houseplant DIY
-- [ ] Setup title tags - in the head of each page <title> One Green Thumb </title>
+- [ ] Setup title tags - in the head of each page <title> Easy Indoor Houseplant Gardening Tool </title>
 
 	-Keywords should appear:
 		Once in the title tag;
