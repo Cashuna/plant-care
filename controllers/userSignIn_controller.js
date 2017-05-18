@@ -10,9 +10,17 @@ var db = require("../models"), bcrypt = require('bcrypt');
 var express = require('express'), userRoutes = express.Router();
 var salt = "$2a$10$BMaZfkUboe3WS0TGkvmpOu";
 
-userRoutes.get("/test", function(req, res) {
+
+userRoutes.get("/test/pass", function(req, res) {
     res.status(200).json({ 'message': 'Success'})
 });
+
+
+//=====================TEMPORARY INSERT, IGNORE BELOW============
+userRoutes.get("/test", function(req, res) {
+    res.status(501).json({ 'error': 'Not Implemented'})
+});
+//==================END OF TEMPORARY INSERT, IGNORE ABOVE========
 
 // POST route for creating a new user
 userRoutes.post("/user", function(req, res) {
