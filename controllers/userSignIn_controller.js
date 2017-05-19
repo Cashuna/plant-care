@@ -24,17 +24,56 @@ userRoutes.get("/test", function(req, res) {
 
 // POST route for creating a new user
 userRoutes.post("/user", function(req, res) {
+    //bcrypt.hash(req.body.password, salt, function(err, hash) {
+        // Store hash in your password DB.
+        db.signIn.create({
+            username: req.body.username,
+            password: req.body.password//hash
+        }).then(function(dbPost) {
+                res.status(200).json({'status': 'success'}); //res.redirect('/login/sign-in')
+            }); //.catch(function(err) { res.render ('sign-up', {status: can't create, error: err}
+    //});
+
+});
+
+/*// GET route for retrieving user
+userRoutes.get("/user/profile/:id", function(req, res) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
         // Store hash in your password DB.
         db.signIn.create({
             username: req.body.username,
             password: hash
         }).then(function(dbPost) {
-                res.status(200).json({'status': 'success'});
-            });
+            res.status(200).json({'status': 'success'});
+        });
     });
 
 });
+
+
+
+
+userRoutes.get(sign-up, function (req, res) {
+res.render('sign-up')*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 userRoutes.post("/user/signin", function(req, res) {
     db.signIn.findOne({

@@ -19,7 +19,7 @@ var jwt = require("jsonwebtoken");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));//???????
 
 // Servi g static content for the app from the "public" directory in the app directory
 app.use(express.static(process.cwd() + "/public"));
@@ -38,7 +38,7 @@ require("./controllers/userProfile_controller.js")(app);
 var login = require("./controllers/userSignIn_controller.js");
 
 app.use('/login', login);
-app.use('/login/secure', function (req, res, next) {
+/*app.use('/login/secure', function (req, res, next) {
     // check authorization
     // if authorized next()
     if (!req.header('Authorization')) {
@@ -58,7 +58,7 @@ app.use('/login/secure', function (req, res, next) {
     }
     // else res.status(401).json({})
 });
-app.use('/api/secure', login);
+app.use('/api/secure', login);*/
 
 // Syncing the sequelize models and then starting the express app
 db.sequelize.sync().then( function() {
