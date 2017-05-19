@@ -1,0 +1,210 @@
+/*--------------------------------------------*/
+/*----------------~~~GLOBAL~~~----------------*/
+/*--------------------------------------------*/
+
+html, body {
+  /*width: 100%;
+	height: 100%;*/
+  position: relative;
+  overflow: scroll;
+  /*overflow-x: hidden;*/
+  background: linear-gradient(#87a5ff, white);
+  /*background: linear-gradient(#76cc8f, white);*/
+  font-family: verdana;
+  /*font-variant: small-caps;*/
+  font-size: 18px;
+  font-weight: 100;
+  margin: 0;
+  min-height: 100%;
+}
+
+.button {
+  background-color: rgb(65, 105, 225);
+  font-family: arial;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 10px;
+  text-decoration: none;
+  margin: 10px 2px 0px 2px;
+  cursor: pointer;
+  font-family: verdana;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.input {
+  padding: 5px;
+  font-family: verdana;
+  font-size: 15px;
+  font-weight: 100;
+  margin-top: 5px;
+  margin-bottom: 5px;
+	border: 0;
+	text-align: center;
+	border-radius: 20px;
+}
+
+.input-header {
+  font-family: verdana;
+  /*font-variant: small-caps;*/
+  font-size: 20px;
+  font-weight: 100;
+	margin-top: 3px;
+	text-align: center;
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  /* center horizontally */
+  align-items: center;
+  /* center vertically */
+  height: 100%;
+  padding-bottom: 0rem;
+}
+
+.login-form {
+  padding: 40px 100px;
+  /*border: 1px solid grey;*/
+  width: auto;
+  height: auto;
+  /*z-index: -1;*/
+  /*position: static;*/
+  box-shadow: 0px 0px 50px white;
+  /*top: 45%;
+	left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  border-radius: 70px;
+  margin: 100px;
+}
+
+#fillgaugeSun {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+/*---------------------------------------------*/
+/*------------------~~~NAV~~~------------------*/
+/*---------------------------------------------*/
+
+nav, nav ul {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  margin: 0 -1.5%;
+}
+
+nav {
+  transform: scale(0.1);
+  transition: all .25s;
+}
+
+nav ul li {
+  display: table;
+  width: 100%;
+  height: calc(80% / 4);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgb(65, 105, 225);
+  perspective: 0px;
+  transform: rotateX(-90deg) scale(0.5);
+  transition: all 0.3s ease 0.1s;
+}
+
+nav ul li a {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  font-size: 2.5em;
+  letter-spacing: 0.2em;
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 100;
+}
+
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#toggle {
+  display: none;
+}
+
+#toggle+#toggle-btn, .nav-icon {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#toggle+#toggle-btn {
+  height: 40px;
+  width: 40px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0);
+}
+
+.nav-icon, .nav-icon:before, .nav-icon:after {
+  position: fixed;
+  height: 4px;
+  width: 40px;
+  margin: 18px 0;
+  z-index: 900;
+  border-radius: 3px;
+  background: #fff;
+  transition: all 0.25s;
+}
+
+.nav-icon:before {
+  content: "";
+  margin-top: -18px;
+}
+
+.nav-icon:after {
+  content: "";
+  margin-top: 18px;
+}
+
+#toggle:checked~nav {
+  opacity: 1;
+  transform: scale(0.8);
+}
+
+#toggle:checked~.nav-icon {
+  background: rgba(255, 0, 0, 0);
+}
+
+#toggle:checked~.nav-icon:before {
+  transform: rotate(-225deg);
+  margin-top: 0;
+}
+
+#toggle:checked~.nav-icon:after {
+  transform: rotate(225deg);
+  margin-top: 0;
+}
+
+#toggle:checked~nav ul li {
+  transform: rotateY(0deg) scale(1);
+}
+
+
+/*--------------------------------------------*/
+/*----------------~~~FOOTER~~~----------------*/
+/*--------------------------------------------*/
+
+footer {
+  position: absolute;
+  width: 100%;
+  height: 75px;
+  background-image: url("../images/potted-herbs.png");
+  background-size: 150px;
+  background-repeat: repeat-x;
+  bottom: 0;
+  padding: 0rem;
+  /*background-color: white;*/
+}
