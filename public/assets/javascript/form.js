@@ -1,5 +1,14 @@
 /***************************************************/
 // FUNCTIONS
+var handlePlantSubmit = function() {
+	grabPlant({})
+}
+
+var grabPlant = function(plantData) {
+	$.post("/api/plants", plantData)
+	.then(getPlant());
+};
+
 
 
 /***************************************************/
@@ -9,7 +18,6 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		var newUserProfile = {
-			//plantName: $("#plant-name").val().trim(),
 			plantName: $("#plant-name option:selected").text(),
 			plantHeight: $("#plant-height").val().trim(),
 			plantWatered: $("#plant-watered").val().trim(),

@@ -7,13 +7,8 @@ var path = require("path");
 /***************************************************/
 // ROUTES
 module.exports = function(app) {
-	// GET route for displaying the form
-	app.get("/form", function(req, res) {
-	  	res.sendFile(path.join(__dirname, "../public/plantform.html"));
-	});
-
 	// GET route for pulling the user's plant data
-	app.get("/api/user/plant", function(req, res) {
+	app.get("/api/user/:plant", function(req, res) {
 		// Pulling the user's plant data for the specified plant
 		db.userProfile.findAll({
 			where: {
@@ -52,6 +47,7 @@ module.exports = function(app) {
 			console.log("post worked!");
 
 			res.redirect("/api/user/plant");
+			res.render(dbUserProf);
 
 			////**** Need to redirect to dashboard
 		})
