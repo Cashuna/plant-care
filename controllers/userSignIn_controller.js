@@ -43,12 +43,12 @@ userRoutes.get("/login", function (req, res) {
                          exp: Math.floor(Date.now() / 1000) + (60 * 60),
                          data: user.id
                      }, 'secretJWTsigningAndItsRandom');
-                     //res.redirect("/dashboard");
-                     res.status(200).json({
+                     res.redirect("/dashboard");
+                     /*res.status(200).json({
                          id: user.id,
                          username: user.username,
                          token: userToken
-                    });
+                    });*/
                  }
              });
          }
