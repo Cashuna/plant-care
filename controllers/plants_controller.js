@@ -30,11 +30,6 @@ module.exports = function(app) {
 	});
 
 	// GET route for displaying charts.html
-	app.get("/charts", function(req, res) {
-		res.sendFile(path.join(__dirname, "../public/charts.html"));
-	});
-
-	// GET route for displaying charts.html
 	app.get("/", function(req, res) {
 	  	res.sendFile(path.join(__dirname, "../public/index.html"));
 	});
