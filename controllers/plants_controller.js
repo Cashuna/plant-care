@@ -35,11 +35,6 @@ module.exports = function(app) {
 	});
 
 	// GET route for displaying charts.html
-	app.get("/form", function(req, res) {
-	  	res.sendFile(path.join(__dirname, "../public/plantform.html"));
-	});
-
-	// GET route for displaying charts.html
 	app.get("/dashboard", function(req, res) {
 	  	res.sendFile(path.join(__dirname, "../public/dashboard.html"));
 	});
