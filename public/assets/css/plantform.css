@@ -82,11 +82,9 @@ html, body {
   margin: 100px;
 }
 
-/* required part */
 .plant-dropdown span {position:relative;}
 .plant-dropdown select {position:absolute;left:0px;display:none}
 
-/* beauty */
 .plant-dropdown input {
     width: 233px;
     padding:5px;
