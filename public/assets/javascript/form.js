@@ -1,15 +1,5 @@
 /***************************************************/
 // FUNCTIONS
-var handlePlantSubmit = function() {
-	grabPlant({})
-}
-
-var grabPlant = function(plantData) {
-	$.post("/api/plants", plantData)
-	.then(getPlant());
-};
-
-
 
 /***************************************************/
 //MAIN PROCESSES
@@ -38,12 +28,12 @@ $(document).ready(function() {
 	   	});
 
 		// Emptying the form
-		$("plant-name").val("");
-		$("plant-height").val("");
-		$("plant-watered").val("");
-		$("plant-spread").val("");
-		$("plant-sunlight").val("");
-		$("temp").val("");	
-		$("plant-trimmed").val("");
+		$("#plant-name").val("");
+		$("#plant-height").val("");
+		$("#plant-watered").val("");
+		$("#plant-spread").val("");
+		$("#plant-sunlight").val("");
+		$("#temp").val("");	
+		$("#plant-trimmed").val("");
 	});
 });
