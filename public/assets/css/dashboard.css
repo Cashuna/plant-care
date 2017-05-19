@@ -55,15 +55,15 @@ html, body {
 
 }
 
-.container {
+/*.container {
   display: flex;
-  justify-content: center;
+  justify-content: center;*/
   /* center horizontally */
-  align-items: center;
+  /*align-items: center;*/
   /* center vertically */
-  height: 100%;
+  /*height: 100%;
   padding-bottom: 0rem;
-}
+}*/
 
 .login-form {
   padding: 40px 100px;
@@ -206,5 +206,6 @@ footer {
   background-repeat: repeat-x;
   bottom: 0;
   padding: 0rem;
+  margin-top: 75px;
   /*background-color: white;*/
 }
