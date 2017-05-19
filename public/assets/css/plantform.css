@@ -40,9 +40,11 @@ html, body {
   font-weight: 100;
   margin-top: 5px;
   margin-bottom: 5px;
-	border: 0;
 	text-align: center;
-	border-radius: 20px;
+  border-style: double;
+  border-width: 1px;
+  border-color: #ededed;
+  width: 235px;
 }
 
 .input-header {
@@ -68,7 +70,7 @@ html, body {
 .login-form {
   padding: 40px 100px;
   /*border: 1px solid grey;*/
-  width: auto;
+  width: 250px;
   height: auto;
   /*z-index: -1;*/
   /*position: static;*/
@@ -80,6 +82,32 @@ html, body {
   margin: 100px;
 }
 
+/* required part */
+.plant-dropdown span {position:relative;}
+.plant-dropdown select {position:absolute;left:0px;display:none}
+
+/* beauty */
+.plant-dropdown input {
+    width: 233px;
+    padding:5px;
+    padding: 5px;
+    font-family: verdana;
+    font-size: 15px;
+    font-weight: 100;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  	text-align: center;
+}
+.plant-dropdown select {
+    min-width:250px;
+    border-style: double;
+    border-width: 1px;
+    border-color: #ededed;
+}
+.plant-dropdown select option {
+    padding:15px 20px 7px 0px;
+        text-align:center;
+}
 
 /*---------------------------------------------*/
 /*------------------~~~NAV~~~------------------*/
