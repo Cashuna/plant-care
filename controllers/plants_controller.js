@@ -30,13 +30,18 @@ module.exports = function(app) {
 	});
 
 	// GET route for displaying charts.html
-	app.get("/charts", function(req, res) {
-		res.sendFile(path.join(__dirname, "../public/charts.html"));
+	app.get("/", function(req, res) {
+	  	res.sendFile(path.join(__dirname, "../public/index.html"));
 	});
 
 	// GET route for displaying charts.html
-	app.get("/", function(req, res) {
-	  	res.sendFile(path.join(__dirname, "../public/test.html"));
+	app.get("/form", function(req, res) {
+	  	res.sendFile(path.join(__dirname, "../public/plantform.html"));
+	});
+
+	// GET route for displaying charts.html
+	app.get("/dashboard", function(req, res) {
+	  	res.sendFile(path.join(__dirname, "../public/dashboard.html"));
 	});
 
 	  // If no matching route is found default to home
