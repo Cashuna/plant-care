@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         plantWatered: {
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.STRING,
             allowNull: false
         },
 
@@ -23,13 +23,8 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         },
 
-        soilPh: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
-
         plantSunlight: {
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.STRING,
             allowNull: false
         },
 
@@ -39,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         plantTrimmed: {
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.STRING,
             allowNull: false
         }
     },

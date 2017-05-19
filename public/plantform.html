@@ -33,7 +33,7 @@
     <form class="login-form">
       <div class="input-header">Plant Name</div>
 
-        <select name="plant-name">
+        <select name="plant-name" id="plant-name">
           <option value="Basil">Basil</option>
           <option value="Aloe Vera">Aloe Vera</option>
           <option value="Lucky Bamboo">Lucky Bamboo</option>
@@ -59,25 +59,25 @@
         </select>
 
       <div class="input-header">Plant Height (inches)</div>
-      <input type="text" name="plant-height" id="plant-height" class="input" placeholder="11">
+      <input type="number" name="plant-height" id="plant-height" class="input" placeholder="11">
 
       <div class="input-header">Plant Watered</div>
       <input type="text" name="plant-watered" id="plant-watered" class="input" placeholder="Yes">
 
       <div class="input-header">Plant Spread (inches)</div>
-      <input type="text" name="plant-spread" id="plant-spread" class="input" placeholder="6">
+      <input type="number" name="plant-spread" id="plant-spread" class="input" placeholder="6">
 
-      <div class="input-header">Plant Sunlight</div>
-      <input type="text" name="plant-sunlight" id="plant-sunlight" class="input" placeholder="50%">
+      <div class="input-header">Recommended Sunlight?</div>
+      <input type="text" name="plant-sunlight" id="plant-sunlight" class="input" placeholder="Yes">
 
-      <div class="input-header">Temperature</div>
-      <input type="text" name="temp" id="temp" class="input" placeholder="Basil">
+      <div class="input-header">Temperature (F)</div>
+      <input type="number" name="temp" id="temp" class="input" placeholder="68">
 
       <div class="input-header">Plant Trimmed</div>
       <input type="text" name="plant-trimmed" id="plant-trimmed" class="input" placeholder="No">
 
       <br>
-      <input type="submit" value="Submit" class="button">
+      <input type="submit" value="Submit" class="button" id="user-plant-btn">
     </form>
   </div>
 
@@ -88,7 +88,7 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- JavaScript -->
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script type="text/javascript" src="assets/javascript/form.js"></script>
   </div>
 </body>
 

@@ -75,11 +75,11 @@ var addPlantSize = function(data) {
 };
 
 var addPlantCare = function(data) {
-    soil = data.soil_type + " (" + data.soil_acidity_min.toFixed(1) + "pH to " + data.soil_acidity_max.toFixed(1) + "pH)";
-    water = data.water_req;
-    sun = data.sun_req;
+    soil = data.soil_type;
+    //water = data.water_req;
+    //sun = data.sun_req;
 
-    $("#plant-care").append("<p>Soil: " + soil + "</p><p>Water: " + water + "</p><p>Sunlight: " + sun + "</p>");
+    $("#plant-care").append("<p>Soil: " + soil + "</p>");
 };
 
 var addPlantTemp = function(data) {
@@ -98,7 +98,6 @@ var addPlantSow = function(data) {
     	$("#plant-sow").append("<p>Okay to sow directly? " + sowBoolean + "</p>");
     };
 };
-
 
 /***************************************************/
 //MAIN PROCESSES
