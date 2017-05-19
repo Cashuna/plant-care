@@ -39,10 +39,9 @@ var getPlantOverview = function() {
     	// Calling the plant data for the user's plant(s)
     	addPlantHead(data);
     	addPlantOverview(data);
-    	addPlantLifecycle(data);
+        addPlantCare(data);
+        addPlantTemp(data);
     	addPlantSize(data);
-    	addPlantCare(data);
-    	addPlantTemp(data);
     	addPlantSow(data);
     }); 
 };
@@ -50,21 +49,28 @@ var getPlantOverview = function() {
 var addPlantHead = function(data) {
     plantName = data.plant_name;
 
-    $("#plant-head").append("<h2>Let's grow some " + plantName + "!</h2>");
+    $("#plant-head").append("<h1>Let's grow some " + plantName + "!</h1>");
 };
 
 var addPlantOverview = function(data) {
     plantNameSci = data.plant_name_sci;
     plantOrigin = data.origin;
-
-    $("#plant-intro").append("<p>Scientific name: " + plantNameSci + "</p><p>Origin: " + plantOrigin + "</p>");
-};
-
-var addPlantLifecycle = function(data) {
-    plantCycle = data.lifecycle;
     plantShape = data.plant_shape;
 
-    $("#plant-lifecycle").append("<p>Lifecycle: " + plantCycle + "</p><p>Shape: " + plantShape + "</p>");
+    $("#plant-intro").append("<p>Scientific name: " + plantNameSci + "</p><p>Origin: " + plantOrigin + "</p><p>Shape: " + plantShape + "</p>");
+};
+
+var addPlantCare = function(data) {
+    soil = data.soil_type;
+    plantCycle = data.lifecycle;
+
+    $("#plant-care").append("<p>Lifecycle: " + plantCycle + "</p><p>Soil: " + soil + "</p>");
+};
+
+var addPlantTemp = function(data) {
+    temp = data.tempF_grow_min + "&#8457; to " + data.tempF_grow_max + "&#8457;";
+
+    $("#plant-care").append("<p>Ideal temperatures: " + temp + "</p>");
 };
 
 var addPlantSize = function(data) {
@@ -74,28 +80,14 @@ var addPlantSize = function(data) {
     $("#plant-size").append("<p>Mature height: " + matureHt + "</p><p>Mature spread: " + matureSprd + "</p>");
 };
 
-var addPlantCare = function(data) {
-    soil = data.soil_type;
-    //water = data.water_req;
-    //sun = data.sun_req;
-
-    $("#plant-care").append("<p>Soil: " + soil + "</p>");
-};
-
-var addPlantTemp = function(data) {
-    temp = data.tempF_grow_min + "&#8457; to " + data.tempF_grow_max + "&#8457;";
-
-    $("#plant-temp").append("<p>Ideal growing temperatures: " + temp + "</p>");
-};
-
 var addPlantSow = function(data) {
     sowBoolean = data.sow_direct;
     sowInfo = data.sowing_depth_val.toFixed(1) + " " + data.sowing_depth_unit;
 
     if (sowBoolean === "Yes") {
-    	$("#plant-sow").append("<p>Okay to sow directly? " + sowBoolean + "</p><p>Sow depth: " + sowInfo + "</p>");
+    	$("#plant-size").append("<p>Sow directly? " + sowBoolean + " (Depth: " + sowInfo + " )</p>");
     } else {
-    	$("#plant-sow").append("<p>Okay to sow directly? " + sowBoolean + "</p>");
+    	$("#plant-size").append("<p>Sow directly? " + sowBoolean + "</p>");
     };
 };
 

@@ -1,7 +1,6 @@
 /***************************************************/
 // FUNCTIONS
 
-
 /***************************************************/
 //MAIN PROCESSES
 $(document).ready(function() {
@@ -9,7 +8,6 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		var newUserProfile = {
-			//plantName: $("#plant-name").val().trim(),
 			plantName: $("#plant-name option:selected").text(),
 			plantHeight: $("#plant-height").val().trim(),
 			plantWatered: $("#plant-watered").val().trim(),
@@ -30,12 +28,12 @@ $(document).ready(function() {
 	   	});
 
 		// Emptying the form
-		$("plant-name").val("");
-		$("plant-height").val("");
-		$("plant-watered").val("");
-		$("plant-spread").val("");
-		$("plant-sunlight").val("");
-		$("temp").val("");	
-		$("plant-trimmed").val("");
+		$("#plant-name").val("");
+		$("#plant-height").val("");
+		$("#plant-watered").val("");
+		$("#plant-spread").val("");
+		$("#plant-sunlight").val("");
+		$("#temp").val("");	
+		$("#plant-trimmed").val("");
 	});
 });

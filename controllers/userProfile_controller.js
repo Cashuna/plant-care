@@ -7,7 +7,7 @@ var path = require("path");
 /***************************************************/
 // ROUTES
 module.exports = function(app) {
-	// GET route for displaying the form
+	// GET route for displaying form page
 	app.get("/form", function(req, res) {
 	  	res.sendFile(path.join(__dirname, "../public/plantform.html"));
 	});
@@ -52,6 +52,7 @@ module.exports = function(app) {
 			console.log("post worked!");
 
 			res.redirect("/api/user/plant");
+			res.render(dbUserProf);
 
 			////**** Need to redirect to dashboard
 		})

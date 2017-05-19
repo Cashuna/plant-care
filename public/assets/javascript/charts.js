@@ -17,7 +17,7 @@ configSun.waveColor = "#FFD633";
 configSun.circleThickness = 0.1;
 configSun.circleFillGap = 0.2;
 configSun.textVertPosition = 0.8;
-//configSun.displayPercent = false;
+configSun.displayPercent = false;
 //configSun.waveAnimateTime = 2000;
 configSun.waveHeight = 0.02;
 configSun.waveCount = 1;
@@ -107,8 +107,8 @@ var userPlantData = function(data) {
         var plantH = data[i].plantHeight;
         htArr.push(plantH);
    
-        var pH = data[i].soilPh;
-        phArr.push(pH);
+        //var pH = data[i].soilPh;
+        //phArr.push(pH);
 
         var temp = data[i].temp;
         tempArr.push(temp);
@@ -304,13 +304,13 @@ $(document).ready(function() {
             // Calling the function to pull the recommended sun amount
             waterRec(data.water_req);
             // Calling the loadLiquidFillGuage function to display the water data
-            $("#guageH1").text("Recommended Water");
-            var gaugeWater = loadLiquidFillGauge("fillgaugeWater", 65, configWater);
+            $("#guageH1").text("Recommended Water: " + data.water_req);
+            var gaugeWater = loadLiquidFillGauge("fillgaugeWater", waterRec, configWater);
 
             // Calling the function to pull the recommended sun amount
             sunRec(data.sun_req);
             // Calling the loadLiquidFillGuage function to display the sunlight data
-            $("#guageH2").text("Recommended Sun");
+            $("#guageH2").text("Recommended Sun: " + data.sun_req);
             var gaugeSun = loadLiquidFillGauge("fillgaugeSun", sunRec, configSun);
         });
     });

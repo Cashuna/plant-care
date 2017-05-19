@@ -1,4 +1,4 @@
-// Plant controller --> Nicole is using this file for getting the plant care data from the stored database
+// Plant controller
 // DEPENDENCIES
 var express = require("express");
 var db = require("../models");
@@ -29,12 +29,12 @@ module.exports = function(app) {
 		});
 	});
 
-	// GET route for displaying charts.html
+	// GET route for displaying login page
 	app.get("/", function(req, res) {
 	  	res.sendFile(path.join(__dirname, "../public/index.html"));
 	});
 
-	// GET route for displaying charts.html
+	// GET route for displaying dashboard.html
 	app.get("/dashboard", function(req, res) {
 	  	res.sendFile(path.join(__dirname, "../public/dashboard.html"));
 	});
