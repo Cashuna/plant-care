@@ -46,7 +46,7 @@ userRoutes.get("/login", function (req, res) {
                          secure: process.env.NODE_ENV === "production",
                          signed: true
                      });
-                     res.redirect("/form");
+                     res.redirect("/dashboard");
                         /*res.status(200).json({
                             id: user.id,
                             username: user.username,
