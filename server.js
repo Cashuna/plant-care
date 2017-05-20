@@ -36,8 +36,8 @@ app.set("view engine", "handlebars");
 /*******************************************/
 // ROUTES
 // Importing routes and giving the server access to them
-//require("./controllers/plants_controller.js")(app);
-//require("./controllers/userProfile_controller.js")(app);
+require("./controllers/plants_controller.js")(app);
+require("./controllers/userProfile_controller.js")(app);
 //require("./controllers/userSignIn_controller.js")(app);
 
 var auth = require("./controllers/userSignIn_controller.js");
@@ -46,25 +46,6 @@ app.use('/auth', auth);
 app.use("/api", require("./controllers/userProfile_controller.js"));
 app.use("/api", require("./controllers/plants_controller.js"));
 app.use("/api", jwtExp({secret: "secretJWTsigningAndItsRandom"}));
-
-app.get("/dashboard", jwtExp({
-        secret: "secretJWTsigningAndItsRandom",
-        getToken: function wrapCookie(req) {
-            if (req.signedCookies) {
-                return req.signedCookies.jwtAuthToken;
-            }
-            return null;
-        },
-    credentialsRequired: false
-    }),
-    function(req, res, next) {
-    if (req.user) {
-        next();
-    }
-    else{
-        res.redirect("/auth/login");
-    }
-});
 
 app.use('/auth/login', function (req, res, next) {
     // check authorization
@@ -86,6 +67,26 @@ app.use('/auth/login', function (req, res, next) {
     }
     // else res.status(401).json({})
 });
+
+app.get("/dashboard", jwtExp({
+        secret: "secretJWTsigningAndItsRandom",
+        getToken: function wrapCookie(req) {
+            if (req.signedCookies) {
+                return req.signedCookies.userToken;
+            }
+            return null;
+        },
+    credentialsRequired: false
+    }),
+    function(req, res, next) {
+    if (req.user) {
+        next();
+    }
+    else{
+        res.redirect("/auth/login");
+    }
+});
+
 /*app.use('/', plant);*/
 
 // Syncing the sequelize models and then starting the express app
