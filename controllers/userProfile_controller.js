@@ -48,7 +48,7 @@ module.exports = function(app) {
 			/// *** Need to connect to logged-in user
 			signInId: req.body.signInId
 		}).then(function(dbUserProf) {
-			console.log(dbUserProf);
+			//console.log(dbUserProf);
 			console.log("post worked!");
 
 			res.redirect("/dashboard");
@@ -60,38 +60,5 @@ module.exports = function(app) {
 			// If not successful, throwing the error
 			throw err;
 		});
-	});
-
-	// DELETE route for deleting a plant from the user's profile
-	app.delete("/api/user/:plant", function(req, res) {
-		db.userProfile.destroy({
-			where: {
-				plantName: req.params.plant
-			}
-		}).then(function(dbUserProf) {
-			res.json(dbUserProf);
-		})
-		.catch(function(err) {
-			// If not successful, throwing the error
-			throw err;
-		});
-	});
-
-	// PUT route for updating a plant in the user's profile
-	app.put("/api/user/:plant", function(req, res) {
-		db.userProfile.update(
-			req.body,
-			{
-				where: {
-					plantName: req.params.plant
-				}
-			})
-			.then(function(dbUserProf) {
-				res.json(dbUserProf);
-			})
-			.catch(function(err) {
-				// If not successful, throwing the error
-				throw err;
-			});
 	});
 };

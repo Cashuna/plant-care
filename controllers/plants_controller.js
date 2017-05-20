@@ -13,10 +13,7 @@ module.exports = function(app) {
 		// Pulling all of the Plant Care data for the specified plant
 		db.plant.findOne({
 			where: {
-				// Dummy data for testing - will pull from plant selected by user in form ???
-				//plant_name: "Basil"
 				plant_name: req.params.plant
-				//plant_name: db.userprofiles.plantName
 			}
 		})
 		.then(function(dbPlant) {

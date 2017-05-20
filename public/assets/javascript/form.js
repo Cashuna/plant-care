@@ -1,7 +1,3 @@
-/***************************************************/
-// FUNCTIONS
-
-/***************************************************/
 //MAIN PROCESSES
 $(document).ready(function() {
 	$("#user-plant-btn").on("click", function(event) {
@@ -19,14 +15,10 @@ $(document).ready(function() {
 			signInId: 1
 		};
 
-		console.log("test"); 
-
 		var userplant = $("#plant-name option:selected").text();
-        console.log("TESTTTT: " + userplant);
 
-		 $.post("/api/plant/", newUserProfile)
+		 $.post("/api/plant/new", newUserProfile)
 	    .done(function(data) {
-	    	console.log(data);
 	    	alert("Plant data added!");
 	   	});
 
