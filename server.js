@@ -1,5 +1,6 @@
 // DEPENDENCIES
 var express = require("express"), bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken"), jwtExp = require("express-jwt");
@@ -21,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Servi g static content for the app from the "public" directory in the app directory
+// Serving static content for the app from the "public" directory in the app directory
 app.use(express.static(process.cwd() + "/public"));
 
 // Overriding with POST having ?_method=DELETE
