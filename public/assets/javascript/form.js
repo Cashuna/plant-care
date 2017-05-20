@@ -19,12 +19,15 @@ $(document).ready(function() {
 			signInId: 1
 		};
 
-		console.log("test");
+		console.log("test"); 
 
-		 $.post("/api/plant/new", newUserProfile)
+		var userplant = $("#plant-name option:selected").text();
+        console.log("TESTTTT: " + userplant);
+
+		 $.post("/api/plant/", newUserProfile)
 	    .done(function(data) {
 	    	console.log(data);
-	    	alert("Adding plant...");
+	    	alert("Plant data added!");
 	   	});
 
 		// Emptying the form

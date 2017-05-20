@@ -51,10 +51,12 @@ var htArr = [];
 var phArr = [];
 var tempArr = [];
 
+// Arrays to convert sun amount (text) from the db to number for display
 var sunTxt = ["Full Sun", "Full Sun / Partial Sun", "Partial Sun", "Partial Sun / Dappled Sun", "Dappled Sun / Partial Sun", "Indoor / Dappled Sun", "Partial Sun / Indoor", "Indoor", "Full Shade / Indoor"];
 var sunVal = [100, 85, 65, 50, 50, 25, 25, 0];
 var sunRec;
 
+// Arrays to convert water amount (text) from the db to number for display
 var waterTxt = ["Very High", "High", "Medium", "Low", "Very Low"];
 var waterVal = [100, 85, 50, 25, 15];
 var waterRec;
@@ -106,9 +108,6 @@ var userPlantData = function(data) {
     
         var plantH = data[i].plantHeight;
         htArr.push(plantH);
-   
-        //var pH = data[i].soilPh;
-        //phArr.push(pH);
 
         var temp = data[i].temp;
         tempArr.push(temp);
@@ -125,8 +124,7 @@ var sunRec = function(sun) {
     console.log("Sun rec: " + sunRec);
 };
 
-// Creating a reusable instance of the chart.js prototype that includes the trimmed data (**is that right vocab?)
-// *** Move to new file and export??
+// Creating a reusable instance of the chart.js prototype that includes the trimmed data
 var lineChartTrim = function(ctx, chartTag, userPlantArr, plant, benchmark, title) {
     // Defining the Chart.js line graph
     var chartTag = new Chart(ctx, {
@@ -198,8 +196,7 @@ var lineChartTrim = function(ctx, chartTag, userPlantArr, plant, benchmark, titl
     });
 };
 
-// Creating a reusable instance of the chart.js prototype that does not include the trimmed data (**is that right?)
-// *** Move to new file and export??
+// Creating a reusable instance of the chart.js prototype that does not include the trimmed data
 var lineChartNoTrim = function(ctx, chartTag, userPlantArr, plant, recMin, recMax, title) {
     // Defining the Chart.js line graph
     var chartTag = new Chart(ctx, {
@@ -281,7 +278,10 @@ $(document).ready(function() {
 
         formatDate(data);
 
-        $.get("/api/plants", function(data) {
+        var userplant = data[0].plantName;
+        userplant = userplant.toLowerCase();
+
+        $.get("/api/" + userplant, function(data) {
             console.log(data);
             // Calling the functions to create the benchmark & other lines for the plant spread line graph
             benchmarkFn(benchmarkSprd, data.mature_sprd_val);

@@ -20,7 +20,7 @@ SEO to-do
 - [ ] Determine image alt tags
 - [ ] Determine URL structure - short and sweet
 - [ X] Determine link building strategy (guest blogging, influencer marketing, etc). Pay close attention to which sites have “nofollow” links and avoid those as google will stop crawling once it hits those links. These links provide no juice. Ideally, you want links from sites with a high authority and high volume. (Linking back to our page)
-		*V2 we would make an actual product and get it into stores ike Pikes, home depot, lowes and have them feature our product on their site. We could have the DIY blogs do articles o us by sending them free products. 
+		*V2 we would make an actual product and get it into stores ike Pikes, home depot, lowes and have them feature our product on their site. We could have the DIY blogs do articles on us by sending them free products. 
 - [ ] Verify site with Google - https://www.google.com/webmasters/tools/home?hl=en&pli=1
 - [ ] Optimize page speed & run test - https://developers.google.com/speed/pagespeed/insights/
 - [ ] Optimize mobile responsiveness & run test - https://search.google.com/search-console/mobile-friendly
