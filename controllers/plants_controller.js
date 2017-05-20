@@ -9,12 +9,14 @@ var path = require("path");
 // ROUTES
 module.exports = function(app) {
 	// GET route for pulling all of the Plants data (from myfolia.com)
-	app.get("/api/plants", function(req, res) {
+	app.get("/api/:plant?", function(req, res) {
 		// Pulling all of the Plant Care data for the specified plant
 		db.plant.findOne({
 			where: {
-				// Dummy data for testing - will pull from plant selected by user in form
-				plant_name: "Dill"
+				// Dummy data for testing - will pull from plant selected by user in form ???
+				//plant_name: "Basil"
+				plant_name: req.params.plant
+				//plant_name: db.userprofiles.plantName
 			}
 		})
 		.then(function(dbPlant) {
@@ -38,9 +40,4 @@ module.exports = function(app) {
 	app.get("/dashboard", function(req, res) {
 	  	res.sendFile(path.join(__dirname, "../public/dashboard.html"));
 	});
-
-	  // If no matching route is found default to home
-	 /* app.use(function(req, res) {
-	    res.sendFile(path.join(__dirname, "../public/test.html"));
-	  });*/
 };

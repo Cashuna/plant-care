@@ -17,8 +17,7 @@ module.exports = function(app) {
 		// Pulling the user's plant data for the specified plant
 		db.userProfile.findAll({
 			where: {
-				// Dummy data for testing - will pull from user sign-in & plant selected by user in form
-				plantName: "Dill",
+				// Dummy data for testing - will pull from user sign-in ????
 				signInId: 1
 			},
 			include: [db.signIn]
@@ -46,13 +45,14 @@ module.exports = function(app) {
 			plantSunlight: req.body.plantSunlight,
 			temp: req.body.temp,	
 			plantTrimmed: req.body.plantTrimmed,
+			/// *** Need to connect to logged-in user
 			signInId: req.body.signInId
 		}).then(function(dbUserProf) {
 			console.log(dbUserProf);
 			console.log("post worked!");
 
-			res.redirect("/api/user/plant");
-			res.render(dbUserProf);
+			res.redirect("/dashboard");
+			//res.render(dbUserProf);
 
 			////**** Need to redirect to dashboard
 		})
