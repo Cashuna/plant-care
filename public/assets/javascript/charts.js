@@ -18,38 +18,48 @@ configSun.circleThickness = 0.1;
 configSun.circleFillGap = 0.2;
 configSun.textVertPosition = 0.8;
 configSun.displayPercent = false;
-//configSun.waveAnimateTime = 2000;
 configSun.waveHeight = 0.02;
 configSun.waveCount = 1;
 
 // Chart.js canvas
 var ctxH = $("#heightChart");
 var ctxS = $("#spreadChart");
-var ctxPH = $("#phChart");
+var ctxSun = $("#sunChart");
 var ctxT = $("#tempChart");
 
 // Chart title
 var titleS = "Spread";
 var titleH = "Height";
-var titlePH = "pH";
+var titleSun = "Sun";
 var titleT = "Temperature";
+
+// Chart label
+var labelS = "Mature Spread";
+var labelH = "Mature Height";
+var labelSun = "Rec. Sun";
+var labelT = "Rec. Temp";
+var labelTr = "Plant trimmed!";
+var labelW = "Plant watered!";
 
 // Declaring variables for use later to store data for user's plant
 var timeArr = [];
 
 var trimmedArr = [];
+var wateredArr = [];
 
 var benchmarkSprd = [];
 var benchmarkHt = [];
-var recPHmin = [];
-var recPHmax = [];
+var benchmarkSun = [];
 var recTmin = [];
 var recTmax = [];
 
 var sprdArr = [];
 var htArr = [];
-var phArr = [];
 var tempArr = [];
+var sunArr = [];
+
+var matureHt;
+var matureSprd;
 
 // Arrays to convert sun amount (text) from the db to number for display
 var sunTxt = ["Full Sun", "Full Sun / Partial Sun", "Partial Sun", "Partial Sun / Dappled Sun", "Dappled Sun / Partial Sun", "Indoor / Dappled Sun", "Partial Sun / Indoor", "Indoor", "Full Shade / Indoor"];
@@ -63,7 +73,6 @@ var waterRec;
 
 
 // FUNCTIONS
-// *** Do we prevent form from being available on same day as 1st entered data, or does second entry update 1st???
 // Function to convert sequelize timestamp to day
 var formatDate = function(data) {
     for (var i = 0; i < data.length; i++) {
@@ -86,11 +95,11 @@ var benchmarkFn = function(benchmark, average) {
     };
 };
 
-// Function for plotting if the user trimmed their plant that day in order to provider context
+// Function for plotting if the user trimmed their plant that day in order to provide context
 var userPlantTrim = function(data) {
     for (var i = 0; i < data.length; i++) {
         var plantVar;
-        if (data[i].plantTrimmed === true) {
+        if (data[i].plantTrimmed === "yes" | data[i].plantTrimmed === "Yes") {
             plantVar = 1;
         } else {
             plantVar = null;
@@ -100,8 +109,43 @@ var userPlantTrim = function(data) {
     console.log("Trimmed: " + trimmedArr);
 };
 
+// Function for plotting if the user watered their plant that day in order to provide context
+var userPlantWater = function(data) {
+    for (var i = 0; i < data.length; i++) {
+        var dailyWater;
+        if (data[i].plantWatered === "yes" | data[i].plantWatered === "Yes") {
+            dailyWater = 25;
+        } else {
+            dailyWater = null;
+        }
+        wateredArr.push(dailyWater);
+    };   
+    console.log("Watered: " + wateredArr);
+};
+
+// Functions for converting measurements in the Plants table to inches, if they are in feet
+var convertHt = function(data) {
+    if (data.mature_ht_unit === "feet") {
+        matureHt = data.mature_ht_val * 12;
+    }
+    else {
+        matureHt = data.mature_ht_val;
+    }
+    console.log("ht: " + matureHt);
+};
+
+var convertSprd = function(data) {
+    if (data.mature_sprd_unit === "feet") {
+        matureSprd = data.mature_sprd_val * 12;
+    }
+    else {
+        matureSprd = data.mature_sprd_val;
+    }
+    console.log("sp: " + matureSprd);
+};
+
+// Functions for pulling additional plant care information
 var userPlantData = function(data) {
-    ///Do we need to validate data type here, or that's done in db / in form??
     for (var i = 0; i < data.length; i++) {
         var plantSprd = data[i].plantSpread;
         sprdArr.push(plantSprd);
@@ -111,7 +155,13 @@ var userPlantData = function(data) {
 
         var temp = data[i].temp;
         tempArr.push(temp);
-    }
+
+        //var userWater = data[i].plantWatered;
+        //waterArr.push(userWater);
+
+        var userSun = data[i].plantSunlight;
+        sunArr.push(userSun);
+    };
 };
 
 var waterRec = function(water) {
@@ -125,7 +175,7 @@ var sunRec = function(sun) {
 };
 
 // Creating a reusable instance of the chart.js prototype that includes the trimmed data
-var lineChartTrim = function(ctx, chartTag, userPlantArr, plant, benchmark, title) {
+var lineChartTrim = function(ctx, chartTag, userPlantArr, lineLabel, plant, benchmark, labelTr, arr, title) {
     // Defining the Chart.js line graph
     var chartTag = new Chart(ctx, {
         type: "line",
@@ -138,13 +188,9 @@ var lineChartTrim = function(ctx, chartTag, userPlantArr, plant, benchmark, titl
                 backgroundColor: "rgba(75, 192, 192, 0.2)",
                 borderWidth: 2,
                 borderColor: "rgba(75, 192, 192, 1)",
-                //pointRadius: 4,
                 pointBackgroundColor: "rgba(75, 192, 192, 1)",
-                //pointHoverRadius: 6,
-                //pointHoverBorderColor: "rgba(102, 0, 255, 1)",
-                //pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
             }, {
-                label: "Mature " + title,
+                label: lineLabel,
                 data: benchmark,
                 fill: false,
                 borderWidth: 2,
@@ -152,16 +198,16 @@ var lineChartTrim = function(ctx, chartTag, userPlantArr, plant, benchmark, titl
                 pointRadius: 0,
                 pointHoverRadius: 0
             }, {
-                label: "Plant trimmed!",
-                data: trimmedArr,
-                fill: true,
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                label: labelTr,
+                data: arr,
+                fill: false,
                 borderWidth: 2,
                 borderColor: "rgba(255, 99, 132, 1)",
                 pointStyle: "crossRot",
                 pointRadius: 4,
                 pointBackgroundColor: "rgba(255, 99, 132, 1)",
-                pointHoverRadius: 6
+                pointHoverRadius: 6,
+                showLine: false
             }]
         },
         options: {
@@ -209,16 +255,12 @@ var lineChartNoTrim = function(ctx, chartTag, userPlantArr, plant, recMin, recMa
                 fill: false,
                 borderWidth: 2,
                 borderColor: "rgba(75, 192, 192, 1)",
-                //pointRadius: 4,
                 pointBackgroundColor: "rgba(75, 192, 192, 1)",
-                //pointHoverRadius: 6,
-                //pointHoverBorderColor: "rgba(102, 0, 255, 1)",
-                //pointHoverBackgroundColor: "rgba(102, 0, 255, 1)"
             }, {
                 label: "Min. temp.",
                 data: recMin,
                 fill: true,
-                backgroundColor: "rgba(255, 255, 255, 1)",
+                backgroundColor: "rgba(224, 232, 255, 1)",
                 borderWidth: 2,
                 borderColor: "rgba(153, 102, 255, 1)",
                 pointRadius: 0,
@@ -275,6 +317,7 @@ $(document).ready(function() {
         // Calling the functions to pull the specified plant's spread, height, & trim data 
         userPlantData(data);
         userPlantTrim(data);
+        userPlantWater(data);
 
         formatDate(data);
 
@@ -283,32 +326,36 @@ $(document).ready(function() {
 
         $.get("/api/" + userplant, function(data) {
             console.log(data);
+
+            // Calling the function to convert feet to inches
+            convertHt(data);
+            convertSprd(data);
+            // Calling the function to pull the recommended sun amount
+            sunRec(data.sun_req);
+            // Calling the function to pull the recommended sun amount
+            waterRec(data.water_req);
+            
             // Calling the functions to create the benchmark & other lines for the plant spread line graph
-            benchmarkFn(benchmarkSprd, data.mature_sprd_val);
-            lineChartTrim(ctxS, spreadChart, sprdArr, data.plant_name, benchmarkSprd, titleS);
+            benchmarkFn(benchmarkSprd, matureSprd);
+            lineChartTrim(ctxS, spreadChart, sprdArr, labelS, data.plant_name, benchmarkSprd, labelTr, trimmedArr, titleS);
         
             // Calling the function to create the benchmark & other lines for the plant height line graph
-            benchmarkFn(benchmarkHt, data.mature_ht_val);
-            lineChartTrim(ctxH, heightChart, htArr, data.plant_name, benchmarkHt, titleH);
+            benchmarkFn(benchmarkHt, matureHt);
+            lineChartTrim(ctxH, heightChart, htArr, labelH, data.plant_name, benchmarkHt, labelTr, trimmedArr, titleH);
 
-            // Calling the function to create the benchmark & other lines for the soil pH line graph
-            benchmarkFn(recPHmin, data.soil_acidity_min);
-            benchmarkFn(recPHmax, data.soil_acidity_max);
-            lineChartNoTrim(ctxPH, phChart, phArr, data.plant_name, recPHmin, recPHmax, titlePH);
+            // Calling the function to create the lines for the sun line graph
+            benchmarkFn(benchmarkSun, sunRec);
+            lineChartTrim(ctxSun, sunChart, sunArr, labelSun, data.plant_name, benchmarkSun, labelW, wateredArr, titleSun);
 
             // Calling the function to create the benchmark & other lines for the temp. line graph
             benchmarkFn(recTmin, data.tempF_grow_min);
             benchmarkFn(recTmax, data.tempF_grow_max);
             lineChartNoTrim(ctxT, tempChart, tempArr, data.plant_name, recTmin, recTmax, titleT);
 
-            // Calling the function to pull the recommended sun amount
-            waterRec(data.water_req);
             // Calling the loadLiquidFillGuage function to display the water data
             $("#guageH1").text("Recommended Water: " + data.water_req);
             var gaugeWater = loadLiquidFillGauge("fillgaugeWater", waterRec, configWater);
 
-            // Calling the function to pull the recommended sun amount
-            sunRec(data.sun_req);
             // Calling the loadLiquidFillGuage function to display the sunlight data
             $("#guageH2").text("Recommended Sun: " + data.sun_req);
             var gaugeSun = loadLiquidFillGauge("fillgaugeSun", sunRec, configSun);

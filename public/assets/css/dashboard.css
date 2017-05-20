@@ -18,6 +18,10 @@ html, body {
   min-height: 100%;
 }
 
+canvas {
+  font-family: verdana;
+}
+
 .button {
   background-color: rgb(65, 105, 225);
   font-family: arial;

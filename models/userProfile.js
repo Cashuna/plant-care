@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         plantSunlight: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
 
