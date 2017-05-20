@@ -9,7 +9,7 @@ var exphbs = require("express-handlebars");
 /*******************************************/
 // SETTING UP THE EXPRESS APP
 var app = express();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 // Requiring the models for syncing
 var db = require("./models");
@@ -81,7 +81,7 @@ app.get("/dashboard", jwtExp({
     }),
     function(req, res, next) {
     if (req.user) {
-        next();
+        res.sendFile(path.join(__dirname, "./public/dashboard.html"));
     }
     else{
         res.redirect("/auth/login");

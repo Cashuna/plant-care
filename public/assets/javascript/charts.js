@@ -312,6 +312,9 @@ var lineChartNoTrim = function(ctx, chartTag, userPlantArr, plant, recMin, recMa
 
 // MAIN PROCESSES
 $(document).ready(function() {
+    $.ajaxSetup({
+        headers: { 'Authorization': 'Bearer ' + Cookies.get('userToken') }
+    });
     // Getting the user's plant data & data on the identified plant from the Plants table
     $.get("/api/user/plant", function(data) {
         // Calling the functions to pull the specified plant's spread, height, & trim data 
