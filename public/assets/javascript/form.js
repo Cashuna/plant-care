@@ -20,6 +20,7 @@ $(document).ready(function() {
 		 $.post("/api/plant/new", newUserProfile)
 	    .done(function(data) {
 	    	alert("Plant data added!");
+	    	console.log("Plant data added!");
 	   	});
 
 		// Emptying the form
