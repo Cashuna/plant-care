@@ -11,7 +11,6 @@ $(document).ready(function() {
 			plantSunlight: $("#plant-sunlight").val().trim(),
 			temp: $("#temp").val().trim(),	
 			plantTrimmed: $("#plant-trimmed").val().trim(),
-			/// *** Need to connect to ID of user that is signed-in
 			signInId: 1
 		};
 
