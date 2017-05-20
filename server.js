@@ -1,9 +1,9 @@
 // DEPENDENCIES
 var express = require("express"), bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var path = require("path"); //what path is being required here?
-var jwt = require("jsonwebtoken"), exphbs = require("express-handlebars");
-
+var cookieParser = require("cookie-parser");
+var jwt = require("jsonwebtoken"), jwtExp = require("express-jwt");
+var exphbs = require("express-handlebars");
 
 /*******************************************/
 // SETTING UP THE EXPRESS APP
@@ -13,9 +13,7 @@ var PORT = process.env.PORT || 3000;
 // Requiring the models for syncing
 var db = require("./models");
 
-//var jwt = require("jsonwebtoken");
-
-
+app.use(cookieParser("secretJWTsigningAndItsRandom"));
 
 // Setting up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -38,13 +36,35 @@ app.set("view engine", "handlebars");
 /*******************************************/
 // ROUTES
 // Importing routes and giving the server access to them
-require("./controllers/plants_controller.js")(app);
-require("./controllers/userProfile_controller.js")(app);
+//require("./controllers/plants_controller.js")(app);
+//require("./controllers/userProfile_controller.js")(app);
 //require("./controllers/userSignIn_controller.js")(app);
 
 var auth = require("./controllers/userSignIn_controller.js");
-
 app.use('/auth', auth);
+
+app.use("/api", require("./controllers/userProfile_controller.js"));
+app.use("/api", require("./controllers/plants_controller.js"));
+app.use("/api", jwtExp({secret: "secretJWTsigningAndItsRandom"}));
+
+app.get("/dashboard", jwtExp({
+        secret: "secretJWTsigningAndItsRandom",
+        getToken: function wrapCookie(req) {
+            if (req.signedCookies) {
+                return req.signedCookies.jwtAuthToken;
+            }
+            return null;
+        },
+    credentialsRequired: false
+    }),
+    function(req, res, next) {
+    if (req.user) {
+        next();
+    }
+    else{
+        res.redirect("/auth/login");
+    }
+});
 
 app.use('/auth/login', function (req, res, next) {
     // check authorization
