@@ -41,27 +41,17 @@ userRoutes.get("/login", function (req, res) {
                      var userToken = jwt.sign({
                          exp: Math.floor(Date.now() / 1000) + (60 * 60),
                          data: user.id
-<<<<<<< HEAD
                      }, "secretJWTsigningAndItsRandom");
                      res.cookie("userToken", userToken, {
                          secure: process.env.NODE_ENV === "production",
                          signed: true
                      });
-                     res.redirect("/dashboard");
+                     res.redirect("/form");
                         /*res.status(200).json({
                             id: user.id,
                             username: user.username,
                             token: userToken
                         });*/
-=======
-                     }, 'secretJWTsigningAndItsRandom');
-                     res.redirect("/form");
-                     /*res.status(200).json({
-                         id: user.id,
-                         username: user.username,
-                         token: userToken
-                    });*/
->>>>>>> 08b816174c4383f531743049e9f13a71aafd6fb9
                  }
              });
          }
