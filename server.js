@@ -53,7 +53,7 @@ app.use('/auth/login', function (req, res, next) {
     if (!req.header('Authorization')) {
         res.status(401).json({ 'status': 'Not Authorized'});
     } else {
-        jwt.verify(req.header('Authorization'), 'randomsecretforsigningjwt', function(err, decoded) {
+        jwt.verify(req.header('Authorization'), 'secretJWTsigningAndItsRandom', function(err, decoded) {
             if (err) {
                 console.log('err', err);
                 res.status(401).json({ 'status': 'Not Authorized'});
