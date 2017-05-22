@@ -68,7 +68,7 @@ var sunRec;
 
 // Arrays to convert water amount (text) from the db to number for display
 var waterTxt = ["Very High", "High", "Medium", "Low", "Very Low"];
-var waterVal = [100, 85, 50, 25, 15];
+var waterVal = [100, 85, 65, 25, 15];
 var waterRec;
 
 
