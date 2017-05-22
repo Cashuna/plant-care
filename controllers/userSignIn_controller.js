@@ -73,7 +73,7 @@ userRoutes.post("/newuser", function(req, res) {
             username: req.body.username,
             password: hash
         }).then(function(dbPost) {
-            res.redirect("login"); //this may be "login"
+            res.redirect("/auth/login"); //this may be "login"
         }).catch(function(err) {
             res.status(400).json({status: "invalid username or password", error: err});
         })
