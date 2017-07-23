@@ -3,7 +3,7 @@
 /*--------------------------------------------*/
 html, body {
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	overflow-x: hidden;
   /*background: linear-gradient(#87a5ff, white);*/
 	background: linear-gradient(#2F7D46, white);
