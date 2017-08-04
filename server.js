@@ -1,10 +1,11 @@
 // DEPENDENCIES
-var express = require("express"), bodyParser = require("body-parser");
+var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken"), jwtExp = require("express-jwt");
 var exphbs = require("express-handlebars");
+var value = require("./webStringValue");
 
 /*******************************************/
 // SETTING UP THE EXPRESS APP
@@ -14,7 +15,7 @@ var PORT = process.env.PORT || 8080;
 // Requiring the models for syncing
 var db = require("./models");
 
-app.use(cookieParser("secretJWTsigningAndItsRandom"));
+app.use(cookieParser(value));
 
 // Setting up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -46,17 +47,17 @@ app.use('/auth', auth);
 
 app.use("/api", require("./controllers/userProfile_controller.js"));
 app.use("/api", require("./controllers/plants_controller.js"));
-app.use("/api", jwtExp({secret: "secretJWTsigningAndItsRandom"}));
+app.use("/api", jwtExp({secret: value}));
 
-app.use('/auth/login', function (req, res, next) {
+app.use("/auth/login", function (req, res, next) {
     // check authorization
     if (!req.header('Authorization')) {
-        res.status(401).json({ 'status': 'Not Authorized'});
+        res.status(401).json({ "status": "Not Authorized"});
     } else {
-        jwt.verify(req.header('Authorization'), 'secretJWTsigningAndItsRandom', function(err, decoded) {
+        jwt.verify(req.header('Authorization'), value, function(err, decoded) {
             if (err) {
-                console.log('err', err);
-                res.status(401).json({ 'status': 'Not Authorized'});
+                console.log("err", err);
+                res.status(401).json({ "status": "Not Authorized"});
             } else {
                 console.log(decoded.data);// bar
                 // query db for privileges for user
@@ -70,7 +71,7 @@ app.use('/auth/login', function (req, res, next) {
 });
 
 app.get("/dashboard", jwtExp({
-        secret: "secretJWTsigningAndItsRandom",
+        secret: value,
         getToken: function wrapCookie(req) {
             if (req.signedCookies) {
                 return req.signedCookies.userToken;
