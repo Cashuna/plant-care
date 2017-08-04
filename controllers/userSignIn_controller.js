@@ -7,7 +7,7 @@
 // Requiring our models
 var db = require("../models"), bcrypt = require("bcrypt");
 var express = require("express"), userRoutes = express.Router();
-var jwt = require("jsonwebtoken");
+var jwt = require("jsonwebtoken"), jwtSigning = require("./webStringValue");
 var salt = "$2a$10$BMaZfkUboe3WS0TGkvmpOu"; //TODO: create process.env. variable
 
 // Routes
@@ -41,7 +41,7 @@ userRoutes.get("/login", function (req, res) {
                      var userToken = jwt.sign({
                          exp: Math.floor(Date.now() / 1000) + (60 * 60),
                          data: user.id
-                     }, "secretJWTsigningAndItsRandom");
+                     }, jwtSigning);
                      res.cookie("userToken", userToken, {
                          secure: process.env.NODE_ENV === "production",
                          signed: true
