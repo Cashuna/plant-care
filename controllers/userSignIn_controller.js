@@ -18,7 +18,7 @@ userRoutes.get("/login", function (req, res) {
     });
 });
 
- userRoutes.post("/login", function(req, res, next) {
+userRoutes.post("/login", function(req, res, next) {
      var passwordAttempt = req.body.password;
      db.signIn.findOne({
          where: {

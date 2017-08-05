@@ -24,7 +24,9 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Serving static content for the app from the "public" directory in the app directory
-app.use(express.static(process.cwd() + "/public"));
+// publicPath2 is a variable that stores the initial project parameter passed to express.static
+var publicPath = path.resolve(__dirname, "public"), publicPath2 = process.cwd() + "/public";
+app.use(express.static(publicPath));
 
 // Overriding with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
