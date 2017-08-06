@@ -96,8 +96,6 @@ app.get("/dashboard", jwtExp({
     }
 });
 
-/*app.use('/', plant);*/
-
 // Syncing the sequelize models and then starting the express app
 db.sequelize.sync().then( function() {
     app.listen(PORT, function() {
