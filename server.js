@@ -6,6 +6,7 @@ var cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken"), jwtExp = require("express-jwt");
 var exphbs = require("express-handlebars");
 var value = require("./webStringValue");
+var path = require("path");
 
 /*******************************************/
 // SETTING UP THE EXPRESS APP
@@ -25,15 +26,19 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Serving static content for the app from the "public" directory in the app directory
 // publicPath2 is a variable that stores the initial project parameter passed to express.static
-var publicPath = path.resolve(__dirname, "public"), publicPath2 = process.cwd() + "/public";
-app.use(express.static(publicPath));
+/*var publicPath = path.resolve(__dirname, "public"), publicPath2 = process.cwd() + "/public";
+app.use(express.static(publicPath));*/
+app.use(express.static(process.cwd() + "/public"));
 
 // Overriding with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 
 //Handlebars
+var viewsPath = path.join(__dirname, "public", "views");
+app.set("views", viewsPath);
 app.engine("handlebars", exphbs({
-    defaultLayout: "main"
+    defaultLayout: "main",
+    layoutsDir: viewsPath + "/layouts"
 }));
 app.set("view engine", "handlebars");
 
@@ -45,7 +50,7 @@ require("./controllers/userProfile_controller.js")(app);
 //require("./controllers/userSignIn_controller.js")(app);
 
 var auth = require("./controllers/userSignIn_controller.js");
-app.use('/auth', auth);
+app.use("/auth", auth);
 
 app.use("/api", require("./controllers/userProfile_controller.js"));
 app.use("/api", require("./controllers/plants_controller.js"));
@@ -56,7 +61,7 @@ app.use("/auth/login", function (req, res, next) {
     if (!req.header('Authorization')) {
         res.status(401).json({ "status": "Not Authorized"});
     } else {
-        jwt.verify(req.header('Authorization'), value, function(err, decoded) {
+        jwt.verify(req.header("Authorization"), value, function(err, decoded) {
             if (err) {
                 console.log("err", err);
                 res.status(401).json({ "status": "Not Authorized"});

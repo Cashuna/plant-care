@@ -7,7 +7,7 @@
 // Requiring our models
 var db = require("../models"), bcrypt = require("bcrypt");
 var express = require("express"), userRoutes = express.Router();
-var jwt = require("jsonwebtoken"), jwtSigning = require("./webStringValue");
+var jwt = require("jsonwebtoken"), jwtSigning = require("../webStringValue");
 var salt = "$2a$10$BMaZfkUboe3WS0TGkvmpOu"; //TODO: create process.env. variable
 
 // Routes
