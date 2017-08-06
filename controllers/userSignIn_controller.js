@@ -13,7 +13,7 @@ var salt = "$2a$10$BMaZfkUboe3WS0TGkvmpOu"; //TODO: create process.env. variable
 // Routes
 //=======================BEGIN LOGIN=================================
 userRoutes.get("/login", function (req, res) {
-    res.render("login", {
+    res.render("loginTest", {
         status: "Welcome, login"
     });
 });
@@ -33,7 +33,7 @@ userRoutes.post("/login", function(req, res, next) {
          else {
              bcrypt.compare(passwordAttempt, user.password, function(err, valid) {
                  if (err || !valid) {
-                     res.render("newuser", {
+                     res.render("newuserTest", {
                          "status" : "Invalid username or password"
                      });
                  }
@@ -60,7 +60,7 @@ userRoutes.post("/login", function(req, res, next) {
 
 //=======================BEGIN NEW USER===============================
 userRoutes.get("/newuser", function (req, res) {
-    res.render("newuser", {
+    res.render("newuserTest", {
         status: "Welcome, sign up."
     });
 });
