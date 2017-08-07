@@ -82,8 +82,16 @@ html, body {
   margin: 100px;
 }
 
-.plant-dropdown span {position:relative;}
-.plant-dropdown select {position:absolute;left:0px;display:none}
+.plant-dropdown span {
+  position:relative;
+  z-index: 1;
+}
+
+.plant-dropdown select {
+  position:absolute;
+  left:0px;
+  display:none
+}
 
 .plant-dropdown input {
     width: 233px;
@@ -116,6 +124,7 @@ nav, nav ul {
   width: 100vw;
   height: 100%;
   margin: 0 -1.5%;
+  z-index: 900;
 }
 
 nav {
