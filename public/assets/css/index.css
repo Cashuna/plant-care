@@ -63,6 +63,26 @@ html, body {
   background-color: rgba(0, 0, 0, .4);
 }
 
+.authLink {
+	font-size: 16px;
+}
+
+a.authLink:link {
+	color: white;
+	text-decoration: none;
+}
+
+a.authLink:visited {
+	color: white;
+	text-decoration: none;
+}
+
+a.authLink:hover,
+a.authLink:active {
+	color: green;
+	text-decoration: none;
+}
+
 #caption {
 	font-family: verdana;
 	/*font-variant: small-caps;*/
