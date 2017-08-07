@@ -48,13 +48,9 @@ module.exports = function(app) {
 			/// *** Need to connect to logged-in user
 			signInId: req.body.signInId
 		}).then(function(dbUserProf) {
-			//console.log(dbUserProf);
-			console.log("post worked!");
-
-			res.redirect("/dashboard");
-			//res.render(dbUserProf);
-
 			////**** Need to redirect to dashboard
+			res.redirect("/dashboard");
+			console.log("post worked!");
 		})
 		.catch(function(err) {
 			// If not successful, throwing the error
