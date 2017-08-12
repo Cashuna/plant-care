@@ -47,7 +47,7 @@ app.set("view engine", "handlebars");
 // Importing routes and giving the server access to them
 require("./controllers/plants_controller.js")(app);
 require("./controllers/userProfile_controller.js")(app);
-//require("./controllers/userSignIn_controller.js")(app);
+
 
 var auth = require("./controllers/userSignIn_controller.js");
 app.use("/auth", auth);
