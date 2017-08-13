@@ -82,7 +82,7 @@ userRoutes.post("/newuser", function(req, res) {
             res.status(400);
             res.render("newuser", {"status": "Username already taken. Please choose a different username."});
         }
-        bcrypt.hash(req.body.password, salt, function(err, hash) {
+        bcrypt.hash(req.body.password, salt, function(errorCrypt, hash) {
             // Store hash in your password DB.
             db.signIn.create({
                 username: req.body.username,
@@ -91,7 +91,7 @@ userRoutes.post("/newuser", function(req, res) {
                 res.status(201).json({status: "user created."});
                 res.redirect("/auth/login");
             }).catch(function(err) {
-                res.status(401).json({status: "invalid username or password", error: err});
+                res.status(401).json({status: "invalid username or password", error: errorCrypt});
             })
         });
     });
