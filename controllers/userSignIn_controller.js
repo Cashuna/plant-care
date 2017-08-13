@@ -90,5 +90,20 @@ userRoutes.post("/newuser", function(req, res) {
     });
 });
 
+//=================================URL Parse============================
+
+userRoutes.post("/form?plant-height=:num1&plant-spread=:num2&temp=:num3&plant-sunlight=num4&plant-watered=:answer1&plant-trimmed=:answer2",
+function(req, res){
+   db.userProfile = {
+       "plant-height": req.params.num1,
+       "plant-spread": req.params.num2,
+       "temp": req.params.num3,
+       "plant-sunlight": req.params.num4,
+       "plant-watered": req.params.answer1,
+       "plant-trimmed": req.params.answer2
+   };
+   res.redirect("/dashboard");
+});
+
 // =============================================================
 module.exports = userRoutes;
