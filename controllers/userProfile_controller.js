@@ -19,7 +19,7 @@ module.exports = function(app) {
 		db.userProfile.findAll({
 			where: {
 				// Dummy data for testing - will pull from user sign-in ????
-				signInId: 1
+				signInId: 1 //TODO: find sign-in ID and place the value here
 			},
 			include: [db.signIn]
 		})
