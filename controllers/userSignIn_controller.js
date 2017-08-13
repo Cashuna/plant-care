@@ -13,6 +13,7 @@ var salt = "$2a$10$BMaZfkUboe3WS0TGkvmpOu"; //TODO: create process.env. variable
 // Routes
 //=======================BEGIN LOGIN=================================
 userRoutes.get("/login", function (req, res) {
+    res.status(200);
     res.render("login", {
         status: "Welcome! Login below."
     });
@@ -27,12 +28,14 @@ userRoutes.post("/login", function(req, res, next) {
      }).then(function(user) {
          if (!user) {
              console.log("no user found");
+             res.status(200);
              res.render("newuser", {"status": "Looks like you're a new user - create an account here."});
          }
              //TODO: add max login attempts
          else {
              bcrypt.compare(passwordAttempt, user.password, function(err, valid) {
                  if (err || !valid) {
+                     res.status(401).json({status: "user not authorized."});
                      res.render("newuser", {
                          "status" : "Invalid username or password. Need a new account? Create one here."
                      });
@@ -46,6 +49,7 @@ userRoutes.post("/login", function(req, res, next) {
                          secure: process.env.NODE_ENV === "production",
                          signed: true
                      });
+                     res.status(200);
                      res.redirect("/dashboard");
                         /*res.status(200).json({
                             id: user.id,
@@ -60,6 +64,7 @@ userRoutes.post("/login", function(req, res, next) {
 
 //=======================BEGIN NEW USER===============================
 userRoutes.get("/newuser", function (req, res) {
+    res.status(200);
     res.render("newuser", {
         status: "Welcome! Sign-up below."
     });
@@ -74,6 +79,7 @@ userRoutes.post("/newuser", function(req, res) {
      }).then(function(user) {
         if (user) {
             console.log("username already exists.");
+            res.status(400);
             res.render("newuser", {"status": "Username already taken. Please choose a different username."});
         }
         bcrypt.hash(req.body.password, salt, function(err, hash) {
@@ -82,9 +88,10 @@ userRoutes.post("/newuser", function(req, res) {
                 username: req.body.username,
                 password: hash
             }).then(function(dbPost) {
+                res.status(201).json({status: "user created."});
                 res.redirect("/auth/login");
             }).catch(function(err) {
-                res.status(400).json({status: "invalid username or password", error: err});
+                res.status(401).json({status: "invalid username or password", error: err});
             })
         });
     });
@@ -102,6 +109,7 @@ function(req, res){
        "plant-watered": req.params.answer1,
        "plant-trimmed": req.params.answer2
    };
+   res.status(202).json({status: "accepted"}); //TODO: determine if info is created before updating code to 201
    res.redirect("/dashboard");
 });
 
