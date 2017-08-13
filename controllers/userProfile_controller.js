@@ -50,7 +50,7 @@ module.exports = function(app) {
 			signInId: req.body.signInId
 		}).then(function(dbUserProf) {
 			////**** Need to redirect to dashboard
-			res.status(201);
+			res.status(202).json({status: "input accepted"}); // TODO: verify information was actually created and update status to 201
 			res.redirect("/dashboard");
 			console.log("post worked!");
 		})
