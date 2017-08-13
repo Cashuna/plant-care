@@ -9,6 +9,7 @@ var path = require("path");
 module.exports = function(app) {
 	// GET route for displaying form page
 	app.get("/form", function(req, res) {
+		res.status(200);
 	  	res.sendFile(path.join(__dirname, "../public/plantform.html"));
 	});
 
@@ -49,6 +50,7 @@ module.exports = function(app) {
 			signInId: req.body.signInId
 		}).then(function(dbUserProf) {
 			////**** Need to redirect to dashboard
+			res.status(201);
 			res.redirect("/dashboard");
 			console.log("post worked!");
 		})
