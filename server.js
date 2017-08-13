@@ -7,6 +7,8 @@ var jwt = require("jsonwebtoken"), jwtExp = require("express-jwt");
 var exphbs = require("express-handlebars");
 var value = require("./webStringValue");
 var path = require("path");
+var logger = require("morgan");
+
 
 /*******************************************/
 // SETTING UP THE EXPRESS APP
@@ -16,6 +18,7 @@ var PORT = process.env.PORT || 8080;
 // Requiring the models for syncing
 var db = require("./models");
 
+app.use(logger("dev", {options: "immediate"}));
 app.use(cookieParser(value));
 
 // Setting up the Express app to handle data parsing
