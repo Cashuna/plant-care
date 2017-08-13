@@ -13,7 +13,7 @@ module.exports = function(app) {
 	});
 
 	// GET route for pulling the user's plant data
-	app.get("/api/user/plant", function(req, res) {
+	app.get("/api/user/plant", function(req, res) { //TODO: remove /api from the route, it's not needed as line 55 of server.js inserts this when middleware is invoked
 		// Pulling the user's plant data for the specified plant
 		db.userProfile.findAll({
 			where: {
@@ -36,7 +36,7 @@ module.exports = function(app) {
 	});
 
 	// POST route for saving a new plant to the user's profile
-	app.post("/api/plant/new", function(req, res) {
+	app.post("/api/plant/new", function(req, res) { //TODO: remove /api from the route, it's not needed as line 55 of server.js inserts this when middleware is invoked
 		db.userProfile.create({
 			plantName: req.body.plantName,
 			plantHeight: req.body.plantHeight,
